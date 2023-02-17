@@ -5,7 +5,7 @@ class Vendor:
         self.deactivated = deactivated
         self.id = id
 
-    def change_deactivated_status(self):
+    def vendor_change_deactivated_status(self):
         if self.deactivated:
             self.deactivated = False
         else:

@@ -5,7 +5,7 @@ class Category:
         self.deactivated = deactivated
         self.id = id
 
-    def change_deactivated_status(self):
+    def category_change_deactivated_status(self):
         if self.deactivated:
             self.deactivated = False
         else:

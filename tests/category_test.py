@@ -19,13 +19,14 @@ class TestCategory(unittest.TestCase):
     def test_category_has_id(self):
         self.assertEqual(None, self.category_1.id)
 
-    def test_deactivated_status_change__True(self):
-        self.category_1.change_deactivated_status()
+    def test_category_deactivated_status_change__True(self):
+        self.category_1.category_change_deactivated_status()
         self.assertEqual(True, self.category_1.deactivated)
+        self.category_1.category_change_deactivated_status()
 
-    def test_deactivated_status_change__False(self):
+    def test_category_deactivated_status_change__False(self):
         self.category_1.deactivated = True
-        self.category_1.change_deactivated_status()
+        self.category_1.category_change_deactivated_status()
         self.assertEqual(False, self.category_1.deactivated)
 
     # 17/02/23 - Above tests passed. 
