@@ -4,7 +4,7 @@ from datetime import datetime
 
 
 class TestGoal(unittest.TestCase):
-    goal_1 = Goal(2500.00, 1000.00, "01/06/2023")
+    goal_1 = Goal(2500.00, 1000.00, "2023-06-01")
 
     def test_goal_has_monthly_take_home_pay(self):
         self.assertEqual(2500.00, self.goal_1.monthly_take_home_pay)
@@ -13,7 +13,7 @@ class TestGoal(unittest.TestCase):
         self.assertEqual(1000.00, self.goal_1.savings_target)
 
     def test_goal_has_savings_time_frame(self):
-        self.assertEqual(datetime.strptime("01/06/2023", "%d/%m/%Y"), self.goal_1.savings_time_frame)
+        self.assertEqual(datetime.strptime("2023-06-01", "%Y-%m-%d"), self.goal_1.savings_time_frame)
 
     def test_goal_has_id(self):
         self.assertEqual(None, self.goal_1.id)

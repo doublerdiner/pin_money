@@ -4,7 +4,7 @@ from models.transaction import Transaction
 
 
 class TestVendor(unittest.TestCase):
-    transaction_1 = Transaction("Cinema", 18.00, "17/02/2023")
+    transaction_1 = Transaction("Cinema", 18.00, "2023-02-17")
     vendor_1 = Vendor("ABC Cinema", transaction_1)
 
     def test_vendor_has_name(self):
