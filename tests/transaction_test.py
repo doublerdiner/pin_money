@@ -4,7 +4,7 @@ from datetime import datetime
 
 
 class TestTransaction(unittest.TestCase):
-    transaction_1 = Transaction("Cinema", 18.00, "17 02 2023")
+    transaction_1 = Transaction("Cinema", 18.00, "17/02/2023")
 
     def test_transaction_has_name(self):
         self.assertEqual("Cinema", self.transaction_1.name)
@@ -13,7 +13,7 @@ class TestTransaction(unittest.TestCase):
         self.assertEqual(18.00, self.transaction_1.cost)
 
     def test_transaction_has_date(self):
-        self.assertEqual(datetime.strptime("17 02 2023", "%d %m %Y"), self.transaction_1.date)
+        self.assertEqual(datetime.strptime("17/02/2023", "%d/%m/%Y"), self.transaction_1.date)
 
     def test_transaction_has_monthly_recurring(self):
         self.assertEqual(False, self.transaction_1.monthly_recurring)

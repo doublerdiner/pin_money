@@ -4,7 +4,7 @@ from models.transaction import Transaction
 
 
 class TestCategory(unittest.TestCase):
-    transaction_1 = Transaction("Cinema", 18.00, "17 02 2023")
+    transaction_1 = Transaction("Cinema", 18.00, "17/02/2023")
     category_1 = Category("Entertainment", transaction_1)
 
     def test_category_has_name(self):
