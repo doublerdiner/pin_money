@@ -1,7 +1,6 @@
 class Category:
-    def __init__(self, name, transaction, deactivated=False, id=None):
+    def __init__(self, name, deactivated=False, id=None):
         self.name = name
-        self.transaction = transaction 
         self.deactivated = deactivated
         self.id = id
 

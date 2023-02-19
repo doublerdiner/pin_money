@@ -4,14 +4,10 @@ from models.transaction import Transaction
 
 
 class TestCategory(unittest.TestCase):
-    transaction_1 = Transaction("Cinema", 18.00, "2023-02-17")
-    category_1 = Category("Entertainment", transaction_1)
+    category_1 = Category("Entertainment")
 
     def test_category_has_name(self):
         self.assertEqual("Entertainment", self.category_1.name)
-
-    def test_category_has_transaction(self):
-        self.assertEqual(self.transaction_1, self.category_1.transaction)
 
     def test_category_has_deactivated_status(self):
         self.assertEqual(False, self.category_1.deactivated)

@@ -4,14 +4,10 @@ from models.transaction import Transaction
 
 
 class TestVendor(unittest.TestCase):
-    transaction_1 = Transaction("Cinema", 18.00, "2023-02-17")
-    vendor_1 = Vendor("ABC Cinema", transaction_1)
+    vendor_1 = Vendor("ABC Cinema")
 
     def test_vendor_has_name(self):
         self.assertEqual("ABC Cinema", self.vendor_1.name)
-
-    def test_vendor_has_transaction(self):
-        self.assertEqual(self.transaction_1, self.vendor_1.transaction)
 
     def test_vendor_has_deactivated_status(self):
         self.assertEqual(False, self.vendor_1.deactivated)

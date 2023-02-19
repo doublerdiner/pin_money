@@ -1,8 +1,7 @@
 from db.run_sql import run_sql
 
 from models.vendor import Vendor
-from models.transaction import Transaction
-import repositories.transaction_repository as transaction_repository
+
 
 def save(vendor):
     pass
