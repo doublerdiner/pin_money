@@ -36,6 +36,5 @@ CREATE TABLE goals (
 
 CREATE TABLE accounts(
     id SERIAL PRIMARY KEY,
-    take_home_pay DECIMAL(10,2),
-    month INT
+    take_home_pay DECIMAL(10,2)
 );
