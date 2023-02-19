@@ -3,14 +3,14 @@ import datetime
 class Goal:
     def __init__(self, savings_target, savings_time_frame, saved_so_far=0, id=None):
         self.savings_target = savings_target
-        self.savings_time_frame = datetime.datetime.strptime(savings_time_frame, "%Y-%m-%d")
+        self.savings_time_frame = savings_time_frame
         self.saved_so_far = saved_so_far
         self.id = id
         self.time_left = []
         
     def time_remaining(self):
         today = datetime.datetime.today()
-        time = self.savings_time_frame
+        time = datetime.datetime.strptime(self.savings_time_frame, "%Y-%m-%d")
 
         years = time.year - today.year
         months = time.month - today.month

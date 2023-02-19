@@ -12,8 +12,11 @@ import repositories.vendor_repository as vendor_repository
 import repositories.account_repository as account_repository
 
 account_repository.delete_all()
+goal_repository.delete_all()
 
 goal_1 = Goal(1000.00, "2023-06-01", 500.00)
+goal_repository.save(goal_1)
+
 transaction_1 = Transaction("Cinema", 18.00, "2023-02-17")
 vendor_1 = Vendor("ABC Cinema", transaction_1)
 category_1 = Category("Entertainment", transaction_1)

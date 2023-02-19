@@ -10,7 +10,7 @@ class TestGoal(unittest.TestCase):
         self.assertEqual(1000.00, self.goal_1.savings_target)
 
     def test_goal_has_savings_time_frame(self):
-        self.assertEqual(datetime.strptime("2023-06-01", "%Y-%m-%d"), self.goal_1.savings_time_frame)
+        self.assertEqual("2023-06-01", self.goal_1.savings_time_frame)
 
     def test_goal_has_saved_so_far(self):
         self.assertEqual(500, self.goal_1.saved_so_far)
