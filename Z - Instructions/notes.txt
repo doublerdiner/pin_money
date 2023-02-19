@@ -37,12 +37,17 @@ Class:
 Budget
 
 Attributes:
-monthly_take_home_pay: float
 savings_target: float
 savings_timeframe: date
 priority_budget: bool = False
 id: int
 
+Class:
+Account
+
+Attribute:
+monthly_take_home_pay: float
+today: date
 
 total transactions will need to be added to the transactions repo
 
@@ -50,3 +55,4 @@ Possible app name: Pin Money
 
 Colours: Blue and white
 Logo: wallet
+

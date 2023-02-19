@@ -1,10 +1,10 @@
 import datetime
 
 class Goal:
-    def __init__(self, monthly_take_home_pay, savings_target, savings_time_frame=None, id=None):
-        self.monthly_take_home_pay = monthly_take_home_pay
+    def __init__(self, savings_target, savings_time_frame, saved_so_far=0, id=None):
         self.savings_target = savings_target
         self.savings_time_frame = datetime.datetime.strptime(savings_time_frame, "%Y-%m-%d")
+        self.saved_so_far = saved_so_far
         self.id = id
         self.time_left = []
         
@@ -32,7 +32,7 @@ class Goal:
     def goal_calculation(self):
         months = (self.time_left[2]*12) + self.time_left[1]
         if months >= 0:
-            to_be_saved = self.savings_target / months
+            to_be_saved = (self.savings_target - self.saved_so_far) / months
             to_be_saved = round(to_be_saved, 2)
         return to_be_saved
 
