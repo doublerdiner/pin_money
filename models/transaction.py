@@ -16,3 +16,9 @@ class Transaction:
             self.monthly_recurring = False
         else:
             self.monthly_recurring = True
+
+    def obtain_month_int(self):
+        date = datetime.strftime(self.date, "%Y-%m-%d")
+        string = date.split("-")
+        month = string[1]
+        return int(month)

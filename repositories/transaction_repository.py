@@ -6,6 +6,9 @@ from models.vendor import Vendor
 import repositories.category_repository as category_repository
 import repositories.vendor_repository as vendor_repository
 
+# This repository was tested on 19/02/23.
+# All passed
+
 def save(transaction):
     sql = "INSERT INTO transactions (name, cost, date, category_id, vendor_id, monthly_recurring, notes) VALUES (%s, %s, %s, %s, %s, %s, %s) RETURNING *"
     values = [transaction.name, transaction.cost, transaction.date, transaction.category.id, transaction.vendor.id, transaction.monthly_recurring, transaction.notes]
@@ -50,3 +53,38 @@ def update(transaction):
     sql = "UPDATE transactions SET (name, cost, date, category_id, vendor_id, monthly_recurring, notes) = (%s, %s, %s, %s, %s, %s, %s) WHERE id = %s"
     values = [transaction.name, transaction.cost, transaction.date, transaction.category.id, transaction.vendor.id, transaction.monthly_recurring, transaction.notes, transaction.id]
     run_sql(sql, values)
+
+    # tested to this point
+
+def transactions_for_this_month(month_int):
+    transactions = []
+    select = select_all()
+    for transaction in select:
+        if transaction.obtain_month_int() == month_int:
+            transactions.append(transaction)
+    return transactions
+
+def pin_money_transactions_for_this_month(month_int):
+    transactions = []
+    total_transactions = transactions_for_this_month(month_int)
+    for transaction in total_transactions:
+        if not transaction.monthly_recurring:
+            transactions.append(transaction)
+    return transactions
+
+def monthly_recurring_transactions(month_int):
+    transactions = []
+    total_transactions = transactions_for_this_month(month_int)
+    for transaction in total_transactions:
+        if transaction.monthly_recurring:
+            transactions.append(transaction)
+    return transactions
+
+def total_transactions(list):
+    total=0
+    for transaction in list:
+        total += transaction.cost
+    return total
+
+
+

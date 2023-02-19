@@ -1,0 +1,22 @@
+{%extends "base.html"%}
+{%block content%}
+
+<p>{{month}}</p>
+<p>{{month_int}}</p>
+<p>{{year}}</p>
+
+{%for transaction in pin_money%}
+    <p>{{transaction.name}}</p>
+{%endfor%}
+
+{%for transaction in monthly_recurring%}
+<p>{{transaction.name}}</p>
+{%endfor%}
+
+<p>{{transactions_total}}</p>
+
+<p>{{pin_money_total}}</p>
+
+<p>{{monthly_recurring_total}}</p>
+
+{%endblock%}
