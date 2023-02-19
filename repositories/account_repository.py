@@ -3,7 +3,8 @@ from db.run_sql import run_sql
 from models.account import Account
 
 def save(account):
-    pass
+    sql = "INSERT INTO accounts take_home_pay VALUES %s RETURNING *"
+    values = [account.take_home_pay]
 
 def select_all():
     pass

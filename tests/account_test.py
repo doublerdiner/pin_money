@@ -10,7 +10,3 @@ class TestAccount(unittest.TestCase):
 
     def test_account_has_id(self):
         self.assertEqual(None, self.account_1.id)
-
-    def test_account_has_current_month(self):
-        self.assertEqual(2, self.account_1.month)
-        # This will change from one month to the next

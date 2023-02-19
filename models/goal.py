@@ -18,6 +18,7 @@ class Goal:
 
         self.time_left = [days, months, years]
         return self.time_left
+    # Calculates the time remaining from today until the savings due date.
     
     def goal_comment(self):
         if self.time_left[2] > 0:
