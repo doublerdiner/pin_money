@@ -1,21 +1,52 @@
 from db.run_sql import run_sql
 
 from models.transaction import Transaction
+from models.category import Category
+from models.vendor import Vendor
+import repositories.category_repository as category_repository
+import repositories.vendor_repository as vendor_repository
 
 def save(transaction):
-    pass
+    sql = "INSERT INTO transactions (name, cost, date, category_id, vendor_id, monthly_recurring, notes) VALUES (%s, %s, %s, %s, %s, %s, %s) RETURNING *"
+    values = [transaction.name, transaction.cost, transaction.date, transaction.category.id, transaction.vendor.id, transaction.monthly_recurring, transaction.notes]
+    results = run_sql(sql, values)
+    id = results[0]['id']
+    transaction.id = id
+    return transaction
 
 def select_all():
-    pass
+    transactions = []
+    sql = "SELECT * FROM transactions"
+    results = run_sql(sql)
+    for row in results:
+        category = category_repository.select(row['category_id'])
+        vendor = vendor_repository.select(row['vendor_id'])
+        transaction = Transaction(row['name'], row['cost'], row['date'], category, vendor, row['monthly_recurring'], row['notes'], row['id'])
+        transactions.append(transaction)
+    return transactions
 
 def select(id):
-    pass
+    transaction = None
+    sql = "SELECT * FROM transactions WHERE id = %s"
+    values = [id]
+    results = run_sql(sql, values)
+    if results:
+        result = results[0]
+        category = category_repository.select(result['category_id'])
+        vendor = vendor_repository.select(result['vendor_id'])
+        transaction = Transaction(result['name'], result['cost'], result['date'], category, vendor, result['monthly_recurring'], result['notes'], result['id'])
+    return transaction
 
 def delete(id):
-    pass
+    sql = "DELETE FROM transactions WHERE id = %s"
+    values = [id]
+    run_sql(sql, values)
 
 def delete_all():
-    pass
+    sql = "DELETE FROM transactions"
+    run_sql(sql)
 
 def update(transaction):
-    pass
+    sql = "UPDATE transactions SET (name, cost, date, category_id, vendor_id, monthly_recurring, notes) = (%s, %s, %s, %s, %s, %s, %s) WHERE id = %s"
+    values = [transaction.name, transaction.cost, transaction.date, transaction.category.id, transaction.vendor.id, transaction.monthly_recurring, transaction.notes, transaction.id]
+    run_sql(sql, values)

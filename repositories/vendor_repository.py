@@ -3,6 +3,9 @@ from db.run_sql import run_sql
 from models.vendor import Vendor
 from models.transaction import Transaction
 
+# This repository was tested on 19/02/23.
+# All passed.
+
 def save(vendor):
     sql = "INSERT INTO vendors (name, deactivated) VALUES (%s, %s) RETURNING *"
     values = [vendor.name, vendor.deactivated]

@@ -1,6 +1,5 @@
 import unittest
 from models.category import Category
-from models.transaction import Transaction
 
 
 class TestCategory(unittest.TestCase):

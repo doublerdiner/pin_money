@@ -1,6 +1,5 @@
 import unittest
 from models.vendor import Vendor
-from models.transaction import Transaction
 
 
 class TestVendor(unittest.TestCase):
