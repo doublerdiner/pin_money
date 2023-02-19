@@ -3,6 +3,9 @@ from db.run_sql import run_sql
 from models.category import Category
 from models.transaction import Transaction
 
+# This repository was tested on 19/02/23.
+# All passed.
+
 def save(category):
     sql = "INSERT INTO categories (name, deactivated) VALUES (%s, %s) RETURNING *"
     values = [category.name, category.deactivated]
