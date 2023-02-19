@@ -48,12 +48,12 @@ def update(vendor):
     run_sql(sql, values)
 
 
-# def vendor_transactions(vendor):
-#     transactions = []
-#     sql = "SELECT * FROM transactions WHERE vendor_id = %s"
-#     values = [vendor.id]
-#     results = run_sql(sql, values)
-#     for row in results:
-#         transaction = Transaction(row['name'], row['cost'], row['date'], row['category_id'], row['vendor_id'], row['monthly_recurring'], row['notes'], row['id'])
-#         transactions.append(transaction)
-#     return transactions
+def vendor_transactions(vendor):
+    transactions = []
+    sql = "SELECT * FROM transactions WHERE vendor_id = %s"
+    values = [vendor.id]
+    results = run_sql(sql, values)
+    for row in results:
+        transaction = Transaction(row['name'], row['cost'], row['date'], row['category_id'], row['vendor_id'], row['monthly_recurring'], row['notes'], row['id'])
+        transactions.append(transaction)
+    return transactions

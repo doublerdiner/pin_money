@@ -48,12 +48,12 @@ def update(category):
     run_sql(sql, values)
 
 
-# def category_transactions(category):
-#     transactions = []
-#     sql = "SELECT * FROM transactions WHERE category_id = %s"
-#     values = [category.id]
-#     results = run_sql(sql, values)
-#     for row in results:
-#         transaction = Transaction(row['name'], row['cost'], row['date'], row['category_id'], row['vendor_id'], row['monthly_recurring'], row['notes'], row['id'])
-#         transactions.append(transaction)
-#     return transactions
+def category_transactions(category):
+    transactions = []
+    sql = "SELECT * FROM transactions WHERE category_id = %s"
+    values = [category.id]
+    results = run_sql(sql, values)
+    for row in results:
+        transaction = Transaction(row['name'], row['cost'], row['date'], row['category_id'], row['vendor_id'], row['monthly_recurring'], row['notes'], row['id'])
+        transactions.append(transaction)
+    return transactions

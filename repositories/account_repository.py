@@ -32,9 +32,10 @@ def select(id):
         account = Account(result['take_home_pay'], result['id'])
     return account
 
-# def delete(id):
-#     pass
-# This will not be needed for the app
+def delete(id):
+    sql = "DELETE FROM accounts WHERE id = %s"
+    values = [id]
+    run_sql(sql, values)
 
 def delete_all():
     sql = "DELETE FROM accounts"
