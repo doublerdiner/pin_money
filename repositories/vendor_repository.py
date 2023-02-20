@@ -7,8 +7,8 @@ from models.transaction import Transaction
 # All passed.
 
 def save(vendor):
-    sql = "INSERT INTO vendors (name, deactivated) VALUES (%s, %s) RETURNING *"
-    values = [vendor.name, vendor.deactivated]
+    sql = "INSERT INTO vendors (name, active) VALUES (%s, %s) RETURNING *"
+    values = [vendor.name, vendor.active]
     results = run_sql(sql, values)
     id = results[0]['id']
     vendor.id = id
@@ -19,7 +19,7 @@ def select_all():
     sql = "SELECT * FROM vendors ORDER BY name ASC"
     results = run_sql(sql)
     for row in results:
-        vendor = Vendor(row['name'], row['deactivated'], row['id'])
+        vendor = Vendor(row['name'], row['active'], row['id'])
         vendors.append(vendor)
     return vendors
 
@@ -30,7 +30,7 @@ def select(id):
     results = run_sql(sql, values)
     if results:
         result = results[0]
-        vendor = Vendor(result['name'], result['deactivated'], result['id'])
+        vendor = Vendor(result['name'], result['active'], result['id'])
     return vendor
 
 def delete(id):
@@ -43,8 +43,8 @@ def delete_all():
     run_sql(sql)
 
 def update(vendor):
-    sql = "UPDATE vendors SET (name, deactivated) = (%s, %s) WHERE id = %s"
-    values = [vendor.name, vendor.deactivated, vendor.id]
+    sql = "UPDATE vendors SET (name, active) = (%s, %s) WHERE id = %s"
+    values = [vendor.name, vendor.active, vendor.id]
     run_sql(sql, values)
 
 

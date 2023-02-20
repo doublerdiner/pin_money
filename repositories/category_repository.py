@@ -7,8 +7,8 @@ from models.transaction import Transaction
 # All passed.
 
 def save(category):
-    sql = "INSERT INTO categories (name, deactivated) VALUES (%s, %s) RETURNING *"
-    values = [category.name, category.deactivated]
+    sql = "INSERT INTO categories (name, active) VALUES (%s, %s) RETURNING *"
+    values = [category.name, category.active]
     results = run_sql(sql, values)
     id = results[0]['id']
     category.id = id
@@ -19,7 +19,7 @@ def select_all():
     sql = "SELECT * FROM categories ORDER BY name ASC"
     results = run_sql(sql)
     for row in results:
-        category = Category(row['name'], row['deactivated'], row['id'])
+        category = Category(row['name'], row['active'], row['id'])
         categories.append(category)
     return categories
 
@@ -30,7 +30,7 @@ def select(id):
     results = run_sql(sql, values)
     if results:
         result = results[0]
-        category = Category(result['name'], result['deactivated'], result['id'])
+        category = Category(result['name'], result['active'], result['id'])
     return category
 
 def delete(id):
@@ -43,8 +43,8 @@ def delete_all():
     run_sql(sql)
 
 def update(category):
-    sql = "UPDATE categories SET (name, deactivated) = (%s, %s) WHERE id = %s"
-    values = [category.name, category.deactivated, category.id]
+    sql = "UPDATE categories SET (name, active) = (%s, %s) WHERE id = %s"
+    values = [category.name, category.active, category.id]
     run_sql(sql, values)
 
 

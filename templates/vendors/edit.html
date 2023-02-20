@@ -14,9 +14,9 @@
             <form action="/vendors/{{vendor.id}}" method="POST">
                 <label for="name">Name:</label>
                 <input id="name" name="name" type="text" value="{{vendor.name}}" required autofocus>
-                <input id="deactivate" name="deactivates" type="radio" value="deactivate"required>
-                <label for="deactivate"> Deactivate This Vendor:</label>
-                <input id="active" name="deactivates" type="radio" value="active">
+                <input id="active" name="activate" type="radio" value="deactivate"required>
+                <label for="active"> Deactivate This Vendor:</label>
+                <input id="active" name="activate" type="radio" value="active">
                 <label for="active"> Keep This Vendor Active:</label>
                 <button type="submit">Edit Vendor</button>
             </form>

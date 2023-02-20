@@ -8,13 +8,13 @@ DROP TABLE IF EXISTS categories;
 CREATE TABLE categories (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255),
-    deactivated BOOLEAN
+    active BOOLEAN
 );
 
 CREATE TABLE vendors (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255),
-    deactivated BOOLEAN
+    active BOOLEAN
 );
 
 CREATE TABLE goals (

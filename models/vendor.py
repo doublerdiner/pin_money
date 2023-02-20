@@ -1,11 +1,11 @@
 class Vendor:
-    def __init__(self, name, deactivated=False, id=None):
+    def __init__(self, name, active=True, id=None):
         self.name = name
-        self.deactivated = deactivated
+        self.active=active
         self.id = id
 
-    def vendor_change_deactivated_status(self):
-        if self.deactivated:
-            self.deactivated = False
+    def vendor_change_active_status(self):
+        if self.active:
+            self.active = False
         else:
-            self.deactivated = True
+            self.active = True

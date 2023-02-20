@@ -7,7 +7,7 @@ class TestGoal(unittest.TestCase):
     goal_1 = Goal("Holiday", 1000.00, "2023-06-01", 500.00)
 
     def test_goal_has_name(self):
-        self.assertEqual("holida", self.goal_1.name)
+        self.assertEqual("Holiday", self.goal_1.name)
 
     def test_goal_has_savings_target(self):
         self.assertEqual(1000.00, self.goal_1.savings_target)

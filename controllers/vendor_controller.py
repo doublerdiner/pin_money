@@ -27,10 +27,10 @@ def edit_vendor(id):
 @vendor_blueprint.route("/vendors/<id>", methods=['POST'])
 def update_vendor(id):
     name = request.form['name']
-    if request.form['deactivates'] == "deactivate":
-        deactivated = True
+    if request.form['activate'] == "deactivate":
+        active = False
     else:
-        deactivated = False
-    vendor = Vendor(name, deactivated, id)
+        active = True
+    vendor = Vendor(name, active, id)
     vendor_repository.update(vendor)
     return redirect ("/settings")
