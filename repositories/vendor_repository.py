@@ -2,6 +2,7 @@ from db.run_sql import run_sql
 
 from models.vendor import Vendor
 from models.transaction import Transaction
+from repositories import category_repository
 
 # This repository was tested on 19/02/23.
 # All passed.
@@ -50,10 +51,12 @@ def update(vendor):
 
 def vendor_transactions(vendor):
     transactions = []
-    sql = "SELECT * FROM transactions WHERE vendor_id = %s"
+    sql = "SELECT * FROM transactions WHERE vendor_id = %s ORDER by date ASC"
     values = [vendor.id]
     results = run_sql(sql, values)
     for row in results:
-        transaction = Transaction(row['name'], row['cost'], row['date'], row['category_id'], row['vendor_id'], row['monthly_recurring'], row['notes'], row['id'])
+        category = category_repository.select(row['category_id'])
+        vendor = select(row['vendor_id'])
+        transaction = Transaction(row['name'], row['cost'], row['date'], category, vendor, row['monthly_recurring'], row['notes'], row['id'])
         transactions.append(transaction)
     return transactions

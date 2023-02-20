@@ -14,10 +14,10 @@
             <form action="/vendors/{{vendor.id}}" method="POST">
                 <label for="name">Name:</label>
                 <input id="name" name="name" type="text" value="{{vendor.name}}" required autofocus>
-                <input id="active" name="activate" type="radio" value="deactivate"required>
-                <label for="active"> Deactivate This Vendor:</label>
-                <input id="active" name="activate" type="radio" value="active">
-                <label for="active"> Keep This Vendor Active:</label>
+                <input id="activate" name="activate" type="radio" value="active">
+                <label for="activate"> Keep This Vendor Active:</label>
+                <input id="deactivate" name="activate" type="radio" value="deactivate"required>
+                <label for="deactivate"> Deactivate This Vendor:</label>
                 <button type="submit">Edit Vendor</button>
             </form>
         </section>

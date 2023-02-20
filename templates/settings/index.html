@@ -54,7 +54,7 @@
                 </tr>
                 {% for vendor in vendors %}
                 <tr>
-                    <td>{{vendor.name}}</a></td>
+                    <td><a href="/vendors/{{vendor.id}}">{{vendor.name}}</a></td>
                     <td>{{vendor.active}}</td>
                     <td>
                         <form action="/vendors/edit/{{vendor.id}}">

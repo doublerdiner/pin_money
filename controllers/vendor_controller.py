@@ -1,6 +1,7 @@
 from flask import Flask, Blueprint, render_template, redirect, request
 from repositories import vendor_repository
 from models.vendor import Vendor
+from models.transaction import Transaction
 
 vendor_blueprint = Blueprint("vendor", __name__)
 
@@ -16,6 +17,13 @@ def create_vendor():
     vendor = Vendor(name)
     vendor_repository.save(vendor)
     return redirect ("/settings")
+
+# SHOW
+@vendor_blueprint.route("/vendors/<id>")
+def show_vendor(id):
+    vendor = vendor_repository.select(id)
+    transactions = vendor_repository.vendor_transactions(vendor)
+    return render_template("vendors/show.html", transactions=transactions, vendor=vendor)
 
 # EDIT
 @vendor_blueprint.route('/vendors/edit/<id>')
