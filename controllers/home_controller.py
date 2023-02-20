@@ -27,3 +27,4 @@ def home():
     goal = goals[0]
        
     return render_template("index.html", title="Home", month=month, year=year, take_home_pay=take_home_pay, pin_money=pin_money, monthly_recurring=monthly_recurring, pin_money_total=pin_money_total, monthly_recurring_total=monthly_recurring_total, goal=goal)
+

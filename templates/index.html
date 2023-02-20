@@ -23,7 +23,7 @@
 
 <p>Goal Name = {{goal.name}}</p>
 <p>Goal Target = {{goal.savings_target}}</p>
-<p>Goal Due Date = {{goal.savings_time_frame}}</p>
+<p>Goal Due Date = {{goal.savings_time_frame.strftime("%d/%m/%Y")}}</p>
 <p>Goal Saved So Far = {{goal.saved_so_far}}</p>
 
 {%endblock%}

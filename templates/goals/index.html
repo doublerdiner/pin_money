@@ -13,7 +13,7 @@
             <div>
                 <p>Goal: <a href="/goals/edit/{{goal.id}}">{{goal.name}}</a></p>
                 <p>Savings Target: £{{goal.savings_target}}</p>
-                <p>To be Saved by: {{goal.savings_time_frame}}</p>
+                <p>To be Saved by: {{goal.savings_time_frame.strftime("%d/%m/%Y")}}</p>
                 <p>Funds Saved so Far: £{{goal.saved_so_far}}</p>
                 <p>Still to be Saved: £{{goal.savings_target - goal.saved_so_far}}</p>
             </div>

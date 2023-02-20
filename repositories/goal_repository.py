@@ -15,7 +15,7 @@ def save(goal):
 
 def select_all():
     goals = []
-    sql = "SELECT * FROM goals"
+    sql = "SELECT * FROM goals ORDER BY savings_time_frame ASC"
     results = run_sql(sql)
     for row in results:
         goal = Goal(row['name'], row['savings_target'], row['savings_time_frame'], row['saved_so_far'], row['id'])
@@ -47,6 +47,7 @@ def update(goal):
     run_sql(sql, values)
 
 # def select_newest():
-#     goals = select_all()
+    
+    
 
     
