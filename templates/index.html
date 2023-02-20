@@ -1,9 +1,29 @@
 {%extends "base.html"%}
-
 {%block content%}
-<section class="index">
-<h2>Welcome to Pin Money</h2>
 
+<p>Month = {{month}}</p>
+<p>Take Home Pay = {{take_home_pay}}</p>
+<p>Current Year = {{year}}</p>
 
-</section>
+{%for transaction in pin_money%}
+    <p>Pin Money Transaction Name = {{transaction.name}}</p>
+{%endfor%}
+
+{%for transaction in monthly_recurring%}
+<p>Monthly Recurring Transaction Name = {{transaction.name}}</p>
+{%endfor%}
+
+<p>Transactions Total = {{pin_money_total + monthly_recurring_total}}</p>
+
+<p>Pin Money Total = {{pin_money_total}}</p>
+
+<p>Monthly Recurring Total = {{monthly_recurring_total}}</p>
+
+<p>Available Pin Money for {{month}} = {{take_home_pay - pin_money_total - monthly_recurring_total}}</p>
+
+<p>Goal Name = {{goal.name}}</p>
+<p>Goal Target = {{goal.savings_target}}</p>
+<p>Goal Due Date = {{goal.savings_time_frame}}</p>
+<p>Goal Saved So Far = {{goal.saved_so_far}}</p>
+
 {%endblock%}
