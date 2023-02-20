@@ -45,4 +45,43 @@ def create_transaction():
     transaction_repository.save(transaction)
     return redirect ("/transactions")
 
+# SHOW
+# GET '/transactions/<id>'
+@transaction_blueprint.route("/transactions/<id>")
+def show_transaction(id):
+    transaction = transaction_repository.select(id)
+    return render_template("transactions/show.html", transaction=transaction)
 
+# EDIT
+# GET 'transactions/<id>/edit'
+@transaction_blueprint.route('/transactions/edit/<id>')
+def edit_transaction(id):
+    transaction = transaction_repository.select(id)
+    categories = category_repository.select_all()
+    vendors = vendor_repository.select_all()
+    return render_template("transactions/edit.html", transaction=transaction, categories=categories, vendors=vendors)
+
+# UPDATE
+# PUT '/transactions/<id>'
+@transaction_blueprint.route("/transactions/<id>", methods=['POST'])
+def update_transaction(id):
+    name = request.form['name']
+    cost = request.form['cost']
+    date = request.form['date']
+    category = category_repository.select(request.form['category_id'])
+    vendor = vendor_repository.select(request.form['vendor_id'])
+    if request.form['monthly_recurring'] == "true":
+        monthly_recurring = True
+    else:
+        monthly_recurring = False
+    notes = request.form['notes']
+    transaction = Transaction(name, cost, date, category, vendor, monthly_recurring, notes, id)
+    transaction_repository.update(transaction)
+    return redirect ("/transactions")
+
+# DELETE
+# DELETE '/transactions/<id>'
+@transaction_blueprint.route("/transactions/delete/<id>", methods=['POST'])
+def delete_transaction(id):
+    transaction_repository.delete(id)
+    return redirect("/transactions")
