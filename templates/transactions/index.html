@@ -1,4 +1,40 @@
 {%extends "base.html"%}
 {%block content%}
+<main>
+    <header>
+        <nav>
+           <ul class = "sub-menu">
+                <li><a href="/transactions/new">Add New Transaction</a></li>
+           </ul> 
+        </nav>
+    </header>
+    <h2>All Transactions</h2>
+        <div class="table">
+            <table>
+                <tr>
+                    <th>Name </th>
+                    <th>Cost </th>
+                    <th>Date </th>
+                    <th>Category </th>
+                    <th>Vendor</th>
+                    <th>Monthly Transaction?</th>
+                    <th>Notes</th>
+                </tr>
+                {% for transaction in transactions %}
+                <tr>
+                    <td><a href="transactions/{{transaction.id}}">{{transaction.name}}</a></td>
+                    <td>{{transaction.cost}}</td>
+                    <td>{{transaction.date}}</td>
+                    <td>{{transaction.category.name}}</td>
+                    <td>{{transaction.vendor.name}}</td>
+                    <td>{{transaction.monthly_recurring}}</td>
+                    <td>{{transaction.notes}}</td>
+                </tr>
+                {%endfor%}
+            </table>
+            
+        </div>
+</main>
+
 
 {%endblock%}

@@ -1,6 +1,7 @@
-from flask import Flask, Blueprint, render_template, redirect
+from flask import Flask, Blueprint, render_template, request, redirect
 import datetime
-from repositories import transaction_repository, account_repository, goal_repository
+from repositories import transaction_repository, category_repository, vendor_repository
+from models.transaction import Transaction
 
 transaction_blueprint = Blueprint("transaction", __name__)
 
@@ -11,22 +12,37 @@ def transactions():
     # Date
     today = datetime.datetime.now()
     month = today.strftime("%B")
-    month_int = today.month
     year = today.strftime("%Y")
     # transactions
-    pin_money = transaction_repository.pin_money_transactions_for_this_month(month_int)
-    monthly_recurring = transaction_repository.monthly_recurring_transactions()
-    pin_money_total = transaction_repository.total_transactions(pin_money)
-    monthly_recurring_total = transaction_repository.total_transactions(monthly_recurring)
-    # take_home_pay
-    accounts = account_repository.select_all()
-    account = accounts[0]
-    take_home_pay = account.take_home_pay
-    # Nearest Goal
-    goals = goal_repository.select_all()
-    goal = goals[0]
-    
+    transactions = transaction_repository.select_all()
+       
+    return render_template("transactions/index.html", title="Transactions", month=month, year=year, transactions = transactions)
+
+# NEW
+# GET '/transactions/new'
+@transaction_blueprint.route('/transactions/new')
+def new_transaction():
+    today = datetime.datetime.now()
+    categories = category_repository.select_all()
+    vendors = vendor_repository.select_all()
+    return render_template('transactions/new.html', categories=categories, vendors=vendors, today=today)
+
+# CREATE
+# POST '/transactions'
+@transaction_blueprint.route('/transactions', methods=['POST'])
+def create_transaction():
+    name = request.form['name']
+    cost = request.form['cost']
+    date = request.form['date']
+    category = category_repository.select(request.form['category_id'])
+    vendor = vendor_repository.select(request.form['vendor_id'])
+    if request.form['monthly_recurring'] == "true":
+        monthly_recurring = True
+    else:
+        monthly_recurring = False
+    notes = request.form['notes']
+    transaction = Transaction(name, cost, date, category, vendor, monthly_recurring, notes)
+    transaction_repository.save(transaction)
+    return redirect ("/transactions")
 
 
-    
-    return render_template("transactions/index.html", title="Transactions", month=month, year=year, take_home_pay=take_home_pay, pin_money=pin_money, monthly_recurring=monthly_recurring, pin_money_total=pin_money_total, monthly_recurring_total=monthly_recurring_total, goal=goal)
