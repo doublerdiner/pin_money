@@ -46,3 +46,9 @@ class TestTransaction(unittest.TestCase):
         self.assertEqual(self.vendor_1, self.transaction_1.vendor)
 
 # 19/02/23 Above tests passed.
+
+    def test_obtain_month_int(self):
+        answer = self.transaction_1.obtain_month_int()
+        self.assertEqual(2, answer)
+
+# 20/02/23 Above tests passed. 

@@ -56,11 +56,13 @@ def update(transaction):
 
     # tested to this point
 
+    # TESTING REQUIRED ...
+
 def transactions_for_this_month(month_int):
     transactions = []
     select = select_all()
     for transaction in select:
-        if transaction.obtain_month_int() == month_int:
+        if transaction.obtain_month_int() == int(month_int):
             transactions.append(transaction)
     return transactions
 
@@ -72,9 +74,9 @@ def pin_money_transactions_for_this_month(month_int):
             transactions.append(transaction)
     return transactions
 
-def monthly_recurring_transactions(month_int):
+def monthly_recurring_transactions():
     transactions = []
-    total_transactions = transactions_for_this_month(month_int)
+    total_transactions = select_all()
     for transaction in total_transactions:
         if transaction.monthly_recurring:
             transactions.append(transaction)

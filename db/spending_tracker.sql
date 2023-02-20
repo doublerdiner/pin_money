@@ -19,6 +19,7 @@ CREATE TABLE vendors (
 
 CREATE TABLE goals (
     id SERIAL PRIMARY KEY, 
+    name VARCHAR(255),
     savings_target DECIMAL(10,2), 
     savings_time_frame DATE,
     saved_so_far DECIMAL(10,2)

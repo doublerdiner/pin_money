@@ -6,8 +6,8 @@ from models.goal import Goal
 # All passed
 
 def save(goal):
-    sql = "INSERT INTO goals (savings_target, savings_time_frame, saved_so_far) VALUES (%s, %s, %s) RETURNING *"
-    values = [goal.savings_target, goal.savings_time_frame, goal.saved_so_far]
+    sql = "INSERT INTO goals (name, savings_target, savings_time_frame, saved_so_far) VALUES (%s, %s, %s, %s) RETURNING *"
+    values = [goal.name, goal.savings_target, goal.savings_time_frame, goal.saved_so_far]
     results = run_sql(sql, values)
     id = results[0]['id']
     goal.id = id
@@ -18,7 +18,7 @@ def select_all():
     sql = "SELECT * FROM goals"
     results = run_sql(sql)
     for row in results:
-        goal = Goal(row['savings_target'], row['savings_time_frame'], row['saved_so_far'], row['id'])
+        goal = Goal(row['name'], row['savings_target'], row['savings_time_frame'], row['saved_so_far'], row['id'])
         goals.append(goal)
     return goals
 
@@ -29,7 +29,7 @@ def select(id):
     results = run_sql(sql, values)
     if results:
         result = results[0]
-        goal = Goal(result['savings_target'], result['savings_time_frame'], result['saved_so_far'], result['id'])
+        goal = Goal(result['name'], result['savings_target'], result['savings_time_frame'], result['saved_so_far'], result['id'])
     return goal
 
 def delete(id):
@@ -42,6 +42,11 @@ def delete_all():
     run_sql(sql)
 
 def update(goal):
-    sql = "UPDATE goals SET (savings_target, savings_time_frame, saved_so_far) = (%s, %s, %s) WHERE id = %s"
-    values = [goal.savings_target, goal.savings_time_frame, goal.saved_so_far, goal.id]
+    sql = "UPDATE goals SET (name, savings_target, savings_time_frame, saved_so_far) = (%s, %s, %s, %s) WHERE id = %s"
+    values = [goal.name, goal.savings_target, goal.savings_time_frame, goal.saved_so_far, goal.id]
     run_sql(sql, values)
+
+# def select_newest():
+#     goals = select_all()
+
+    
