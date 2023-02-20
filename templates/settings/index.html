@@ -1,0 +1,73 @@
+{%extends "base.html"%}
+{%block content%}
+<main>
+    <header>
+        <nav>
+           <ul class = "sub-menu">
+                <li><a href="/settings/account">Update Take Home Pay</a></li>
+                <li><a href="/category/add">Add New Category</a></li>
+                <li><a href="/vendor/add">Add New Vendor</a></li>
+           </ul> 
+        </nav>
+    </header>
+    <h2>Settings</h2>
+    <h3>Account</h3>
+        <p>Take Home Pay:</p>
+        <p>{{account.take_home_pay}}</p>
+        <form action="/account/edit">
+            <button type="submit">Edit</button>
+        </form>
+
+    <h3>Categories</h3>
+        <div class="table">
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Deactivated? </th>
+                    <th>Edit</th>
+                </tr>
+                {% for category in categories %}
+                <tr>
+                    <td>{{category.name}}</a></td>
+                    <td>{{category.deactivated}}</td>
+                    <td>
+                        <form action="/category/edit/<id>">
+                            <button type="submit">Edit</button>
+                        </form>
+                    </td>
+                </tr>
+                {%endfor%}
+            </table>           
+        </div>
+
+        <h3>Vendors</h3>
+        <div class="table">
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Deactivated? </th>
+                    <th>Edit</th>
+                </tr>
+                {% for category in categories %}
+                <tr>
+                    <td>{{category.name}}</a></td>
+                    <td>{{category.deactivated}}</td>
+                    <td>
+                        <form action="/category/edit/<id>">
+                            <button type="submit">Edit</button>
+                        </form>
+                    </td>
+                </tr>
+                {%endfor%}
+            </table>           
+        </div>
+
+
+
+
+
+</main>
+
+
+
+{%endblock%}
