@@ -16,7 +16,7 @@ def save(category):
 
 def select_all():
     categories = []
-    sql = "SELECT * FROM categories"
+    sql = "SELECT * FROM categories ORDER BY name ASC"
     results = run_sql(sql)
     for row in results:
         category = Category(row['name'], row['deactivated'], row['id'])

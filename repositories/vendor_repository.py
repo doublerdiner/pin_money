@@ -16,7 +16,7 @@ def save(vendor):
 
 def select_all():
     vendors = []
-    sql = "SELECT * FROM vendors"
+    sql = "SELECT * FROM vendors ORDER BY name ASC"
     results = run_sql(sql)
     for row in results:
         vendor = Vendor(row['name'], row['deactivated'], row['id'])

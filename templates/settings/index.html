@@ -4,9 +4,8 @@
     <header>
         <nav>
            <ul class = "sub-menu">
-                <li><a href="/settings/account">Update Take Home Pay</a></li>
-                <li><a href="/category/add">Add New Category</a></li>
-                <li><a href="/vendor/add">Add New Vendor</a></li>
+                <li><a href="/categories/new">Add New Category</a></li>
+                <li><a href="/vendors/new">Add New Vendor</a></li>
            </ul> 
         </nav>
     </header>
@@ -14,8 +13,10 @@
     <h3>Account</h3>
         <p>Take Home Pay:</p>
         <p>{{account.take_home_pay}}</p>
-        <form action="/account/edit">
-            <button type="submit">Edit</button>
+        <form action="/settings" method="POST">
+            <label for="take_home_pay">Update Your Monthly Take Home Pay: £</label>
+            <input id="take_home_pay" name="take_home_pay" type="number" step=".01" required>
+            <button type="submit">Update</button>
         </form>
 
     <h3>Categories</h3>
@@ -31,13 +32,16 @@
                     <td>{{category.name}}</a></td>
                     <td>{{category.deactivated}}</td>
                     <td>
-                        <form action="/category/edit/<id>">
+                        <form action="/categories/edit/<id>">
                             <button type="submit">Edit</button>
                         </form>
                     </td>
                 </tr>
                 {%endfor%}
-            </table>           
+            </table>      
+            <form action="/categories/new">
+                <button type="submit">Add New Category</button>
+            </form>     
         </div>
 
         <h3>Vendors</h3>
@@ -48,19 +52,23 @@
                     <th>Deactivated? </th>
                     <th>Edit</th>
                 </tr>
-                {% for category in categories %}
+                {% for vendor in vendors %}
                 <tr>
-                    <td>{{category.name}}</a></td>
-                    <td>{{category.deactivated}}</td>
+                    <td>{{vendor.name}}</a></td>
+                    <td>{{vendor.deactivated}}</td>
                     <td>
-                        <form action="/category/edit/<id>">
+                        <form action="/vendors/edit/<id>">
                             <button type="submit">Edit</button>
                         </form>
                     </td>
                 </tr>
                 {%endfor%}
             </table>           
+            <form action="/vendors/new">
+                <button type="submit">Add New Vendor</button>
+            </form>  
         </div>
+
 
 
 
