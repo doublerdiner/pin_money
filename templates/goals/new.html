@@ -1,0 +1,28 @@
+{%extends "base.html"%}
+{%block content%}
+<main>
+    <header>
+        <nav>
+           <ul class = "sub-menu">
+                <li><a href="/goals/new">Add New Goal</a></li>
+           </ul> 
+        </nav>
+    </header>
+    <h2>Add New Goal</h2>
+        <section>
+            <form action="/goals" method="POST">
+                <label for="name">Name:</label>
+                <input id="name" name="name" type="text" placeholder="Holiday" required autofocus>
+                <label for="savings_target">Savings Target: £</label>
+                <input id="savings_target" name="savings_target" type="number" step=".01" placeholder="750.00" required>
+                <label for="savings_time_frame">To be Saved by: </label>
+                <input id="savings_time_frame" name="savings_time_frame" type="date" value={{today}} required>
+                <label for="saved_so_far">Funds Saved so Far: £</label>
+                <input id="saved_so_far" name="saved_so_far" type="number" step=".01" value="0.00" required>
+                <button type="submit">Add Goal</button>
+            </form>
+        </section>
+</main>
+
+
+{%endblock%}

@@ -1,0 +1,33 @@
+{%extends "base.html"%}
+{%block content%}
+<main>
+    <header>
+        <nav>
+           <ul class = "sub-menu">
+                <li><a href="/goals/new">Add New Goal</a></li>
+           </ul> 
+        </nav>
+    </header>
+    <h2>All Goals</h2>
+        {%for goal in goals%}
+            <div>
+                <p>Goal: <a href="/goals/edit/{{goal.id}}">{{goal.name}}</a></p>
+                <p>Savings Target: £{{goal.savings_target}}</p>
+                <p>To be Saved by: {{goal.savings_time_frame}}</p>
+                <p>Funds Saved so Far: £{{goal.saved_so_far}}</p>
+                <p>Still to be Saved: £{{goal.savings_target - goal.saved_so_far}}</p>
+            </div>
+            <div>
+                <form action="/goals/edit/{{goal.id}}">
+                    <button>Edit</button>
+                </form>
+                <form action="/goals/delete/{{goal.id}}" method="POST">
+                    <button>Delete</button>
+                </form>
+            </div>
+
+        {%endfor%}
+</main>
+
+
+{%endblock%}

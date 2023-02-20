@@ -15,7 +15,6 @@ def goals():
     year = today.strftime("%Y")
     # transactions
     goals = goal_repository.select_all()
-       
     return render_template("goals/index.html", title="Goals", month=month, year=year, goals=goals)
 
 # NEW
@@ -23,7 +22,7 @@ def goals():
 @goal_blueprint.route('/goals/new')
 def new_goal():
     today = datetime.datetime.now()
-    return render_template('goals/new.html', today=today)
+    return render_template('goals/new.html', title="New Goal", today=today)
 
 # CREATE
 
@@ -39,17 +38,17 @@ def create_goal():
 
 # SHOW
 
-@goal_blueprint.route("/goals/<id>")
-def show_goal(id):
-    goal = goal_repository.select(id)
-    return render_template("goals/show.html", goal=goal)
+# @goal_blueprint.route("/goals/<id>")
+# def show_goal(id):
+#     goal = goal_repository.select(id)
+#     return render_template("goals/show.html", goal=goal)
 
 # EDIT
 
 @goal_blueprint.route('/goals/edit/<id>')
 def edit_goal(id):
     goal = goal_repository.select(id)
-    return render_template("goals/edit.html", goal=goal)
+    return render_template("goals/edit.html", title="Edit Goal", goal=goal)
 
 # UPDATE
 
