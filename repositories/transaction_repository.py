@@ -28,6 +28,28 @@ def select_all():
         transactions.append(transaction)
     return transactions
 
+def select_all_name():
+    transactions = []
+    sql = "SELECT * FROM transactions ORDER BY name ASC"
+    results = run_sql(sql)
+    for row in results:
+        category = category_repository.select(row['category_id'])
+        vendor = vendor_repository.select(row['vendor_id'])
+        transaction = Transaction(row['name'], row['cost'], row['date'], category, vendor, row['monthly_recurring'], row['notes'], row['id'])
+        transactions.append(transaction)
+    return transactions
+
+def select_all_cost():
+    transactions = []
+    sql = "SELECT * FROM transactions ORDER BY CAST(cost AS DECIMAL(10,2)) ASC"
+    results = run_sql(sql)
+    for row in results:
+        category = category_repository.select(row['category_id'])
+        vendor = vendor_repository.select(row['vendor_id'])
+        transaction = Transaction(row['name'], row['cost'], row['date'], category, vendor, row['monthly_recurring'], row['notes'], row['id'])
+        transactions.append(transaction)
+    return transactions
+
 def select(id):
     transaction = None
     sql = "SELECT * FROM transactions WHERE id = %s"

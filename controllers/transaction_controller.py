@@ -15,8 +15,27 @@ def transactions():
     year = today.strftime("%Y")
     # transactions
     transactions = transaction_repository.select_all()
-       
-    return render_template("transactions/index.html", title="Transactions", month=month, year=year, transactions = transactions)
+    return render_template("transactions/index.html", title="All Transactions", month=month, year=year, transactions = transactions)
+
+@transaction_blueprint.route('/transactions/cost')
+def transactions_cost():
+    # Date
+    today = datetime.datetime.now()
+    month = today.strftime("%B")
+    year = today.strftime("%Y")
+    # transactions
+    transactions = transaction_repository.select_all_cost()
+    return render_template("transactions/index_cost.html", title="All Transactions", month=month, year=year, transactions = transactions)
+
+@transaction_blueprint.route('/transactions/date')
+def transactions_name():
+    # Date
+    today = datetime.datetime.now()
+    month = today.strftime("%B")
+    year = today.strftime("%Y")
+    # transactions
+    transactions = transaction_repository.select_all_name()
+    return render_template("transactions/index_name.html", title="All Transactions", month=month, year=year, transactions = transactions)
 
 # NEW
 # GET '/transactions/new'
@@ -25,7 +44,7 @@ def new_transaction():
     today = datetime.datetime.now()
     categories = category_repository.select_all()
     vendors = vendor_repository.select_all()
-    return render_template('transactions/new.html', categories=categories, vendors=vendors, today=today)
+    return render_template('transactions/new.html', title="New Transaction", categories=categories, vendors=vendors, today=today)
 
 # CREATE
 # POST '/transactions'
@@ -50,7 +69,7 @@ def create_transaction():
 @transaction_blueprint.route("/transactions/<id>")
 def show_transaction(id):
     transaction = transaction_repository.select(id)
-    return render_template("transactions/show.html", transaction=transaction)
+    return render_template("transactions/show.html", title="View Transaction", transaction=transaction)
 
 # EDIT
 # GET 'transactions/<id>/edit'
@@ -59,7 +78,7 @@ def edit_transaction(id):
     transaction = transaction_repository.select(id)
     categories = category_repository.select_all()
     vendors = vendor_repository.select_all()
-    return render_template("transactions/edit.html", transaction=transaction, categories=categories, vendors=vendors)
+    return render_template("transactions/edit.html", title="Edit Transaction", transaction=transaction, categories=categories, vendors=vendors)
 
 # UPDATE
 # PUT '/transactions/<id>'

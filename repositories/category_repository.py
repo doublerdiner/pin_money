@@ -51,7 +51,7 @@ def update(category):
 
 def category_transactions(category):
     transactions = []
-    sql = "SELECT * FROM transactions WHERE category_id = %s"
+    sql = "SELECT * FROM transactions WHERE category_id = %s ORDER by date ASC"
     values = [category.id]
     results = run_sql(sql, values)
     for row in results:

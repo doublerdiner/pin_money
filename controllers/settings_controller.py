@@ -29,4 +29,4 @@ def update_settings():
     take_home_pay = request.form['take_home_pay']
     account = Account(take_home_pay, account.id)
     account_repository.update(account)
-    return redirect ("/settings")
+    return redirect ("/home")

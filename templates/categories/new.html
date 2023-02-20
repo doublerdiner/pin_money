@@ -1,0 +1,22 @@
+{%extends "base.html"%}
+{%block content%}
+<main>
+    <header>
+        <nav>
+           <ul class = "sub-menu">
+                <li><a href="/vendors/new">Add New Vendor</a></li>
+           </ul> 
+        </nav>
+    </header>
+    <h2>Add New Category</h2>
+        <section>
+            <form action="/categories" method="POST">
+                <label for="name">Name:</label>
+                <input id="name" name="name" type="text" placeholder="Fast Food" required autofocus>
+                <button type="submit">Add Category</button>
+            </form>
+        </section>
+</main>
+
+
+{%endblock%}
