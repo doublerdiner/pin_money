@@ -18,18 +18,18 @@ def create_vendor():
     vendor_repository.save(vendor)
     return redirect ("/settings")
 
-# SHOW
+# SHOW / EDIT
 @vendor_blueprint.route("/vendors/<id>")
 def show_vendor(id):
     vendor = vendor_repository.select(id)
     transactions = vendor_repository.vendor_transactions(vendor)
     return render_template("vendors/show.html", title="View Vendor", transactions=transactions, vendor=vendor)
 
-# EDIT
-@vendor_blueprint.route('/vendors/edit/<id>')
-def edit_vendor(id):
-    vendor = vendor_repository.select(id)
-    return render_template("vendors/edit.html", title="Edit Vendor", vendor=vendor)
+# # EDIT
+# @vendor_blueprint.route('/vendors/edit/<id>')
+# def edit_vendor(id):
+#     vendor = vendor_repository.select(id)
+#     return render_template("vendors/edit.html", title="Edit Vendor", vendor=vendor)
 
 # UPDATE
 @vendor_blueprint.route("/vendors/<id>", methods=['POST'])

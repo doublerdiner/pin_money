@@ -16,16 +16,10 @@
             <tr>
                 <th>Name</th>
                 <th>Active? </th>
-                <th>Edit</th>
             </tr>
             <tr>
                 <td>{{category.name}}</td>
                 <td>{{category.active}}</td>
-                <td>
-                    <form action="/categories/edit/{{category.id}}">
-                        <button type="submit">Edit</button>
-                    </form>
-                </td>
             </tr>
         </table>
     <h2>Transactions Linked to This Category</h2>
@@ -39,9 +33,6 @@
                 <th>Vendor</th>
                 <th>Monthly Transaction?</th>
                 <th>Notes</th>
-                <th>Edit</th>
-                <th>Delete</th>
-
             </tr>
             {% for transaction in transactions %}
             <tr>
@@ -56,16 +47,6 @@
                 {%else%}
                     <td>{{transaction.notes}}</td>
                 {%endif%}
-                <td> 
-                    <form action="/transactions/edit/{{transaction.id}}">
-                        <button class="edit" type="submit">Edit</button>
-                    </form>
-                </td>
-                <td>
-                    <form action="/transactions/delete/{{transaction.id}}" method="POST">
-                        <button class="delete" type="submit">Delete</button>
-                    </form>
-                </td>
             </tr>
             {%endfor%}
         </table>
@@ -82,7 +63,7 @@
                 <label for="activate"> Active</label>
                 <input id="deactivate" name="activate" type="radio" value="deactivate"required>
                 <label for="deactivate"> Deactive</label>
-                <button type="submit">Edit Category</button>
+                <button type="submit">Submit</button>
                 <p>If you deactivate a Category then you will no longer be able to select it when creating a new Transaction. </p>
             </form>
         </section>

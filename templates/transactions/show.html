@@ -24,7 +24,7 @@
                 </tr>
                 <tr>
                     <td>{{transaction.name}}</td>
-                    <td>{{transaction.cost}}</td>
+                    <td>£{{transaction.cost}}</td>
                     <td>{{transaction.date.strftime("%d/%m/%Y")}}</td>
                     <td>{{transaction.category.name}}</td>
                     <td>{{transaction.vendor.name}}</td>
@@ -82,7 +82,7 @@
                     {%else%}
                         <td><input id="notes" name="notes" type="textbox" value="{{transaction.notes}}"></td>
                     {%endif%}
-                <button type="submit">Edit Transaction</button>
+                <button type="submit">Submit</button>
             </form>
             <div>
                 <p>Is a Category or Vendor not available for this transaction?</p>

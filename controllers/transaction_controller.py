@@ -44,6 +44,12 @@ def new_transaction():
     today = datetime.datetime.now()
     categories = category_repository.select_all()
     vendors = vendor_repository.select_all()
+    for category in categories:
+        if not category.active:
+            categories.remove(category)
+    for vendor in vendors:
+        if not vendor.active:
+            vendors.remove(vendor)    
     return render_template('transactions/new.html', title="New Transaction", categories=categories, vendors=vendors, today=today)
 
 # CREATE
@@ -71,16 +77,22 @@ def show_transaction(id):
     transaction = transaction_repository.select(id)
     categories = category_repository.select_all()
     vendors = vendor_repository.select_all()
+    for category in categories:
+        if category.name == transaction.category.name:
+            categories.remove(category)
+    for vendor in vendors:
+        if vendor.name == transaction.vendor.name:
+            vendors.remove(vendor)  
     return render_template("transactions/show.html", title="View Transaction", transaction=transaction, categories=categories, vendors=vendors)
 
-# EDIT
-# GET 'transactions/<id>/edit'
-@transaction_blueprint.route('/transactions/edit/<id>')
-def edit_transaction(id):
-    transaction = transaction_repository.select(id)
-    categories = category_repository.select_all()
-    vendors = vendor_repository.select_all()
-    return render_template("transactions/edit.html", title="Edit Transaction", transaction=transaction, categories=categories, vendors=vendors)
+# # EDIT
+# # GET 'transactions/<id>/edit'
+# @transaction_blueprint.route('/transactions/edit/<id>')
+# def edit_transaction(id):
+#     transaction = transaction_repository.select(id)
+#     categories = category_repository.select_all()
+#     vendors = vendor_repository.select_all()
+#     return render_template("transactions/edit.html", title="Edit Transaction", transaction=transaction, categories=categories, vendors=vendors)
 
 # UPDATE
 # PUT '/transactions/<id>'

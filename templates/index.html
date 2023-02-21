@@ -1,29 +1,115 @@
 {%extends "base.html"%}
 {%block content%}
 
-<p>Month = {{month}}</p>
-<p>Take Home Pay = {{take_home_pay}}</p>
-<p>Current Year = {{year}}</p>
+<header>
+    <h2>{{month}} {{year}}</h2>
+</header>
 
-{%for transaction in pin_money%}
-    <p>Pin Money Transaction Name = {{transaction.name}}</p>
-{%endfor%}
+<main>
+    <section>
+        <div>
+            <h4>Take Home Pay = {{take_home_pay}}</h4>
+            <p>Your Take Home Pay can be updated in Settings</p>
+        </div>
+        <div>
+            <h4>{{month}} Stats</h4>
+            <table>
+                <tr>
+                    <th>Available Pin Money for {{month}}: </th>
+                    {%if available_money > 100%}
+                        <td class="green-text">{{available_money}}</td>
+                    {%else%}
+                        <td class="red-text">{{available_money}}</td>
+                    {%endif%}
+                </tr>
+                <tr>
+                    <th>Pin Money Transactions Total: </th>
+                    <td>{{pin_money_total}}</td>
+                </tr>
+                <tr>
+                    <th>Monthly Transactions Total: </th>
+                    <td>£{{monthly_recurring_total}}</td>
+                </tr>
+            </table>
+        </div>
+        
+        <div>
+            <h3>Pin Money Transactions</h3>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Cost</a></th>
+                    <th>Date</a></th>
+                    <th>Category </th>
+                    <th>Vendor</th>
+                    <th>Notes</th>
+                </tr>
+                {% for transaction in pin_money %}
+                <tr>
+                    <td>{{transaction.name}}</a></td>
+                    <td>£{{transaction.cost}}</td>
+                    <td>{{transaction.date.strftime("%d/%m/%Y")}}</td>
+                    <td>{{transaction.category.name}}</td>
+                    <td>{{transaction.vendor.name}}</td>
+                    {%if transaction.notes == "None"%} <td></td>
+                    {%elif transaction.notes == None%} <td></td>
+                    {%else%}
+                        <td>{{transaction.notes}}</td>
+                    {%endif%}
+                </tr>
+                {%endfor%}
+            </table>
+            <p>Pin Money Transactions Total: £{{pin_money_total}}</p>
+        </div>
 
-{%for transaction in monthly_recurring%}
-<p>Monthly Recurring Transaction Name = {{transaction.name}}</p>
-{%endfor%}
+        <div>
+            <h3>Monthly Recurring Transactions</h3>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Cost</a></th>
+                    <th>Date</a></th>
+                    <th>Category </th>
+                    <th>Vendor</th>
+                    <th>Notes</th>
+                </tr>
+                {% for transaction in monthly_recurring %}
+                <tr>
+                    <td>{{transaction.name}}</a></td>
+                    <td>£{{transaction.cost}}</td>
+                    <td>{{transaction.date.strftime("%d/%m/%Y")}}</td>
+                    <td>{{transaction.category.name}}</td>
+                    <td>{{transaction.vendor.name}}</td>
+                    {%if transaction.notes == "None"%} <td></td>
+                    {%elif transaction.notes == None%} <td></td>
+                    {%else%}
+                        <td>{{transaction.notes}}</td>
+                    {%endif%}
+                </tr>
+                {%endfor%}
+            </table>
+            <p>Monthly Recurring Transactions Total: £{{monthly_recurring_total}}</p>
+        </div>
+    </section>
 
-<p>Transactions Total = {{pin_money_total + monthly_recurring_total}}</p>
+    <aside>
 
-<p>Pin Money Total = {{pin_money_total}}</p>
 
-<p>Monthly Recurring Total = {{monthly_recurring_total}}</p>
+    </aside>
 
-<p>Available Pin Money for {{month}} = {{take_home_pay - pin_money_total - monthly_recurring_total}}</p>
 
-<p>Goal Name = {{goal.name}}</p>
-<p>Goal Target = {{goal.savings_target}}</p>
-<p>Goal Due Date = {{goal.savings_time_frame.strftime("%d/%m/%Y")}}</p>
-<p>Goal Saved So Far = {{goal.saved_so_far}}</p>
 
+    <p>Transactions Total = {{grand_total}}</p>
+
+    <p>Pin Money Total = {{pin_money_total}}</p>
+
+    <p>Monthly Recurring Total = {{monthly_recurring_total}}</p>
+
+    <p>Available Pin Money for {{month}} = {{take_home_pay - pin_money_total - monthly_recurring_total}}</p>
+
+    <p>Goal Name = {{goal.name}}</p>
+    <p>Goal Target = {{goal.savings_target}}</p>
+    <p>Goal Due Date = {{goal.savings_time_frame.strftime("%d/%m/%Y")}}</p>
+    <p>Goal Saved So Far = {{goal.saved_so_far}}</p>
+</main>
 {%endblock%}

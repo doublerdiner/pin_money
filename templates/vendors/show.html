@@ -33,8 +33,6 @@
                 <th>Vendor</th>
                 <th>Monthly Transaction?</th>
                 <th>Notes</th>
-                <th>Edit</th>
-                <th>Delete</th>
 
             </tr>
             {% for transaction in transactions %}
@@ -50,16 +48,6 @@
                 {%else%}
                     <td>{{transaction.notes}}</td>
                 {%endif%}
-                <td> 
-                    <form action="/transactions/edit/{{transaction.id}}">
-                        <button class="edit" type="submit">Edit</button>
-                    </form>
-                </td>
-                <td>
-                    <form action="/transactions/delete/{{transaction.id}}" method="POST">
-                        <button class="delete" type="submit">Delete</button>
-                    </form>
-                </td>
             </tr>
             {%endfor%}
         </table>
@@ -76,7 +64,7 @@
                     <label for="activate"> Active</label>
                     <input id="deactivate" name="activate" type="radio" value="deactivate"required>
                     <label for="deactivate"> Deactivate</label>
-                    <button type="submit">Edit Vendor</button>
+                    <button type="submit">Submit</button>
                     <p>If you deactivate a Vendor then you will no longer be able to select it when creating a new Transaction.</p>
                 </form>
             </section>

@@ -17,18 +17,18 @@ def create_category():
     category_repository.save(category)
     return redirect ("/settings")
 
-# SHOW
+# SHOW / EDIT
 @category_blueprint.route("/categories/<id>")
 def show_category(id):
     category = category_repository.select(id)
     transactions = category_repository.category_transactions(category)
     return render_template("categories/show.html", title="View Category", transactions=transactions, category=category)
 
-# EDIT
-@category_blueprint.route('/categories/edit/<id>')
-def edit_category(id):
-    category = category_repository.select(id)
-    return render_template("categories/edit.html", title="Edit Category", category=category)
+# # EDIT
+# @category_blueprint.route('/categories/edit/<id>')
+# def edit_category(id):
+#     category = category_repository.select(id)
+#     return render_template("categories/edit.html", title="Edit Category", category=category)
 
 # UPDATE
 @category_blueprint.route("/categories/<id>", methods=['POST'])

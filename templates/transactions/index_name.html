@@ -4,6 +4,7 @@
     <header>
         <nav>
            <ul class = "sub-menu">
+                <li><a href="/transactions">Back</a></li>
                 <li><a href="/transactions/new">Add New Transaction</a></li>
            </ul> 
         </nav>
@@ -26,7 +27,7 @@
                 {% for transaction in transactions %}
                 <tr>
                     <td><a href="/transactions/{{transaction.id}}">{{transaction.name}}</a></td>
-                    <td>{{transaction.cost}}</td>
+                    <td>£{{transaction.cost}}</td>
                     <td>{{transaction.date.strftime("%d/%m/%Y")}}</td>
                     <td>{{transaction.category.name}}</td>
                     <td>{{transaction.vendor.name}}</td>
@@ -49,7 +50,11 @@
                 </tr>
                 {%endfor%}
             </table>
-            
+        </div>
+        <div>
+            <form action="/transactions/new">
+                <button type="submit">Add a New Transaction</button>
+            </form>
         </div>
 </main>
 
