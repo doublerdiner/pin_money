@@ -4,6 +4,7 @@
     <header>
         <nav>
            <ul class = "sub-menu">
+                <li><a href="/transactions">Back</a></li>
                 <li><a href="/transactions/new">Add New Transaction</a></li>
            </ul> 
         </nav>
@@ -83,6 +84,16 @@
                     {%endif%}
                 <button type="submit">Edit Transaction</button>
             </form>
+            <div>
+                <p>Is a Category or Vendor not available for this transaction?</p>
+                <p>New Categories and Vendors can be added from the Pin Money Settings.</p>
+                <p>The Settings also show any Categories and Vendors that have been deactivated in the past.</p>
+            </div>
+            <div>
+                <form action="/settings" target="_blank">
+                    <button type="submit">Settings</button>
+                </form>   
+            </div>
         </section>
 </main>
 
