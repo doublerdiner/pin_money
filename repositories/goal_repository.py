@@ -46,7 +46,6 @@ def update(goal):
     values = [goal.name, goal.savings_target, goal.savings_time_frame, goal.saved_so_far, goal.id]
     run_sql(sql, values)
 
-# def select_newest():
     
     
 

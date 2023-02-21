@@ -11,11 +11,12 @@ class Goal:
         
     def time_remaining(self):
         today = datetime.datetime.today()
-        time = datetime.datetime.strptime(self.savings_time_frame, "%Y-%m-%d")
+        time = str(self.savings_time_frame)
+        new = datetime.datetime.strptime(time, "%Y-%m-%d")
 
-        years = time.year - today.year
-        months = time.month - today.month
-        days = time.day - today.day
+        years = new.year - today.year
+        months = new.month - today.month
+        days = new.day - today.day
 
         self.time_left = [days, months, years]
         return self.time_left

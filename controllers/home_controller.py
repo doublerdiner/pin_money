@@ -1,6 +1,7 @@
 from flask import Flask, Blueprint, render_template, redirect
 import datetime
 from repositories import transaction_repository, account_repository, goal_repository
+from models.goal import *
 
 home_blueprint = Blueprint("home", __name__)
 
@@ -23,12 +24,15 @@ def home():
     accounts = account_repository.select_all()
     account = accounts[0]
     take_home_pay = account.take_home_pay
-    # Calculations
-    available_money = take_home_pay - grand_total
-
     # Nearest Goal
     goals = goal_repository.select_all()
     goal = goals[0]
+    # Calculations
+    available_money = take_home_pay - grand_total
+    to_be_saved = goal.savings_target - goal.saved_so_far 
+    goal.time_remaining()
+    time = goal.goal_comment()
+
        
-    return render_template("index.html", title="Home", month=month, year=year, take_home_pay=take_home_pay, pin_money=pin_money, monthly_recurring=monthly_recurring, pin_money_total=pin_money_total, monthly_recurring_total=monthly_recurring_total, goal=goal, grand_total=grand_total, available_money=available_money)
+    return render_template("index.html", title="Home", month=month, year=year, take_home_pay=take_home_pay, pin_money=pin_money, monthly_recurring=monthly_recurring, pin_money_total=pin_money_total, monthly_recurring_total=monthly_recurring_total, goal=goal, grand_total=grand_total, available_money=available_money, to_be_saved=to_be_saved, time=time)
 

@@ -93,23 +93,32 @@
     </section>
 
     <aside>
-
-
+        <div>
+            <h3>Top Goal</h3>
+            <table>
+                <tr>
+                    <th>Goal Name:</th>
+                    <td>{{goal.name}}</td>
+                </tr>
+                <tr>
+                    <th>Savings Target:</th>
+                    <td>{{goal.savings_target}}</td>
+                </tr>
+                <tr>
+                    <th>Saved So Far:</th>
+                    <td>{{goal.saved_so_far}}</td>
+                </tr>
+                <tr>
+                    <th>Still to be Saved:</th>
+                    <td>{{to_be_saved}}</td>
+                </tr>
+                <tr>
+                    <th>To be Saved by:</th>
+                    <td>{{goal.savings_time_frame.strftime("%d/%m/%Y")}}</td>
+                </tr>
+            </table>
+            <p>{{time}}</p>
+        </div>
     </aside>
-
-
-
-    <p>Transactions Total = {{grand_total}}</p>
-
-    <p>Pin Money Total = {{pin_money_total}}</p>
-
-    <p>Monthly Recurring Total = {{monthly_recurring_total}}</p>
-
-    <p>Available Pin Money for {{month}} = {{take_home_pay - pin_money_total - monthly_recurring_total}}</p>
-
-    <p>Goal Name = {{goal.name}}</p>
-    <p>Goal Target = {{goal.savings_target}}</p>
-    <p>Goal Due Date = {{goal.savings_time_frame.strftime("%d/%m/%Y")}}</p>
-    <p>Goal Saved So Far = {{goal.saved_so_far}}</p>
 </main>
 {%endblock%}
