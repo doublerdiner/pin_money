@@ -31,6 +31,11 @@
                     <td>£{{monthly_recurring_total}}</td>
                 </tr>
             </table>
+                {%if 0 < available_money < 100%}
+                    <p class="red-text">CAUTION: Less than £100 pin money for the month</p>
+                {%elif available_money <= 0%}
+                    <p class="red-text">CAUTION: £0 Pin Money remaining for this month</p>
+                {%endif%}
         </div>
         
         <div>
@@ -94,7 +99,7 @@
 
     <aside>
         <div>
-            <h3>Top Goal</h3>
+            <h3>Next Goal</h3>
             <table>
                 <tr>
                     <th>Goal Name:</th>
@@ -118,6 +123,14 @@
                 </tr>
             </table>
             <p>{{time}}</p>
+            <form action="/home/{{goal.id}}" method="POST">
+                <label for="saved_so_far">Add Funds to the Savings Target: £</label>
+                <input id="saved_so_far" name="saved_so_far" type="number" step=".01" required>
+                <button type="submit">Add Funds</button>
+            </form>
+            <form action="/goals">
+                <button type="submit">View All Goals</button>
+            </form>
         </div>
     </aside>
 </main>

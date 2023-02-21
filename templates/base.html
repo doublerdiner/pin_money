@@ -4,14 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous">
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
   <title>Pin Money - {{title}}</title>
 </head>
 <body>
-  <header>
-    <nav>
-      <ul class="menu">
+  <header id="header">
+    <div>
+      <h1 class="logo">PIN MONEY</h1>
+    </div>
+
+    <nav class="menu">
+      <ul>
         <li><a href="/home">Home</a></li>
         <li><a href="/transactions">Transactions</a></li>
         <li><a href="/goals">Goals</a></li>
@@ -23,5 +28,8 @@
     {% block content %}
     {% endblock %}
   </div>
+  <footer id="footer">
+    Pin Money 2023
+  </footer>
 </body>
 </html>
