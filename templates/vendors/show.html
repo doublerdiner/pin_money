@@ -4,6 +4,7 @@
     <header>
         <nav>
            <ul class = "sub-menu">
+                <li><a href="/settings">Back</a></li>
                 <li><a href="/categories/new">Add New Category</a></li>
                 <li><a href="/vendors/new">Add New Vendor</a></li>
            </ul> 
@@ -15,16 +16,10 @@
             <tr>
                 <th>Name</th>
                 <th>Active? </th>
-                <th>Edit</th>
             </tr>
             <tr>
                 <td>{{vendor.name}}</td>
                 <td>{{vendor.active}}</td>
-                <td>
-                    <form action="/vendors/edit/{{vendor.id}}">
-                        <button type="submit">Edit</button>
-                    </form>
-                </td>
             </tr>
         </table>
     <h2>Transactions Linked to This Vendor</h2>
@@ -70,6 +65,22 @@
         </table>
         
     </div>
+    <aside>
+        <h2>Edit Vendor</h2>
+            <section>
+                <form action="/vendors/{{vendor.id}}" method="POST">
+                    <label for="name">Name:</label>
+                    <input id="name" name="name" type="text" value="{{vendor.name}}" required autofocus>
+                    <label for="activate">Active Status:</label>
+                    <input id="activate" name="activate" type="radio" value="active">
+                    <label for="activate"> Active</label>
+                    <input id="deactivate" name="activate" type="radio" value="deactivate"required>
+                    <label for="deactivate"> Deactivate</label>
+                    <button type="submit">Edit Vendor</button>
+                    <p>If you deactivate a Vendor then you will no longer be able to select it when creating a new Transaction.</p>
+                </form>
+            </section>
+    </aside>
 </main>
 
 

@@ -69,7 +69,9 @@ def create_transaction():
 @transaction_blueprint.route("/transactions/<id>")
 def show_transaction(id):
     transaction = transaction_repository.select(id)
-    return render_template("transactions/show.html", title="View Transaction", transaction=transaction)
+    categories = category_repository.select_all()
+    vendors = vendor_repository.select_all()
+    return render_template("transactions/show.html", title="View Transaction", transaction=transaction, categories=categories, vendors=vendors)
 
 # EDIT
 # GET 'transactions/<id>/edit'

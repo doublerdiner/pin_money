@@ -4,6 +4,7 @@
     <header>
         <nav>
            <ul class = "sub-menu">
+                <li><a href="/settings">Back</a></li>
                 <li><a href="/categories/new">Add New Category</a></li>
                 <li><a href="/vendors/new">Add New Vendor</a></li>
            </ul> 
@@ -70,6 +71,22 @@
         </table>
         
     </div>
+    <aside>
+        <h2>Edit Category</h2>
+        <section>
+            <form action="/categories/{{category.id}}" method="POST">
+                <label for="name">Name:</label>
+                <input id="name" name="name" type="text" value="{{category.name}}" required autofocus>
+                <label for="activate">Active Status:</label>
+                <input id="activate" name="activate" type="radio" value="active">
+                <label for="activate"> Active</label>
+                <input id="deactivate" name="activate" type="radio" value="deactivate"required>
+                <label for="deactivate"> Deactive</label>
+                <button type="submit">Edit Category</button>
+                <p>If you deactivate a Category then you will no longer be able to select it when creating a new Transaction. </p>
+            </form>
+        </section>
+    </aside>
 </main>
 
 

@@ -4,6 +4,7 @@
     <header>
         <nav>
            <ul class = "sub-menu">
+                <li><a href="/home">Back</a></li>
                 <li><a href="/transactions/new">Add New Transaction</a></li>
            </ul> 
         </nav>
@@ -37,7 +38,7 @@
                         <td>{{transaction.notes}}</td>
                     {%endif%}
                     <td> 
-                        <form action="/transactions/edit/{{transaction.id}}">
+                        <form action="/transactions/{{transaction.id}}">
                             <button class="edit" type="submit">Edit</button>
                         </form>
                     </td>
@@ -49,7 +50,11 @@
                 </tr>
                 {%endfor%}
             </table>
-            
+        </div>
+        <div>
+            <form action="/transactions/new">
+                <button type="submit">Add a New Transaction</button>
+            </form>
         </div>
 </main>
 

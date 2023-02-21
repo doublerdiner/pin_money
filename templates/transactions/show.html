@@ -19,6 +19,7 @@
                     <th>Vendor</th>
                     <th>Monthly Transaction?</th>
                     <th>Notes</th>
+                    <th>Delete</th>
                 </tr>
                 <tr>
                     <td>{{transaction.name}}</td>
@@ -27,16 +28,62 @@
                     <td>{{transaction.category.name}}</td>
                     <td>{{transaction.vendor.name}}</td>
                     <td>{{transaction.monthly_recurring}}</td>
-                    <td>{{transaction.notes}}</td>
+                    {%if transaction.notes == "None"%} <td></td>
+                    {%elif transaction.notes == None%} <td></td>
+                    {%else%}
+                        <td>{{transaction.notes}}</td>
+                    {%endif%}
+                    <td>
+                        <form action="/transactions/delete/{{transaction.id}}" method="POST">
+                            <button class="delete" type="submit">Delete</button>
+                        </form>
+                    </td>
                 </tr>
             </table>
         </div>
-        <form action="/transactions/edit/{{transaction.id}}">
-            <button class="edit" type="submit">Edit</button>
-        </form>
-        <form action="/transactions/delete/{{transaction.id}}" method="POST">
-            <button class="delete" type="submit">Delete</button>
-        </form>
+                
+        <h2>Edit This Transaction</h2>
+        <section>
+            <form action="/transactions/{{transaction.id}}" method="POST">
+                <label for="name">Name:</label>
+                <input id="name" name="name" type="text" value="{{transaction.name}}" required autofocus>
+                <label for="cost">Cost: £</label>
+                <input id="cost" name="cost" type="number" step=".01" value="{{transaction.cost}}" required>
+                <label for="date">Date:</label>
+                <input id="date" name="date" type="date" value="{{transaction.date}}" required>
+                <label for="category">Category:</label>
+                <select name="category_id" id="category">
+                    <option value="{{transaction.category.id}}">{{transaction.category.name}}</option>
+                    {%for row in categories%}
+                        <option value="{{row.id}}">{{row.name}}</option>
+                    {%endfor%}
+                </select>
+                <label for="vendor">Vendor:</label>
+                <select name="vendor_id" id="vendor">
+                    <option value="{{transaction.vendor.id}}">{{transaction.vendor.name}}</option>
+                    {%for row in vendors%}
+                        <option value="{{row.id}}">{{row.name}}</option>
+                    {%endfor%}
+                </select>
+                <label for="monthly_recurring">Monthly Recurring Transaction?</label>
+                <select id="monthly_recurring" name="monthly_recurring">
+                    {%if transaction.monthly_recurring%}
+                    <option value="false">No</option>
+                    <option value="true" selected>Yes</option>
+                    {%else%}
+                    <option value="false" selected>No</option>
+                    <option value="true">Yes</option>
+                    {%endif%}
+                </select>
+                <label for="notes">Notes:</label>
+                    {%if transaction.notes == "None"%} <td><input id="notes" name="notes" type="textbox"></td>
+                    {%elif transaction.notes == None%} <td><input id="notes" name="notes" type="textbox"></td>
+                    {%else%}
+                        <td><input id="notes" name="notes" type="textbox" value="{{transaction.notes}}"></td>
+                    {%endif%}
+                <button type="submit">Edit Transaction</button>
+            </form>
+        </section>
 </main>
 
 
