@@ -9,20 +9,31 @@
            </ul> 
         </nav>
     </header>
+    <section class="left">
     <h2>Edit Goal</h2>
-        <section>
+        
             <form action="/goals/{{goal.id}}" method="POST">
-                <label for="name">Name:</label>
-                <input id="name" name="name" type="text" value="{{goal.name}}" required autofocus>
-                <label for="savings_target">Savings Target: £</label>
-                <input id="savings_target" name="savings_target" type="number" step=".01" value="{{goal.savings_target}}" required>
-                <label for="savings_time_frame">To be Saved by: </label>
-                <input id="savings_time_frame" name="savings_time_frame" type="date" value="{{goal.savings_time_frame}}" required>
-                <label for="saved_so_far">Funds Saved so Far: £</label>
-                <input id="saved_so_far" name="saved_so_far" type="number" step=".01" value="{{goal.saved_so_far}}" required>
-                <button type="submit">Edit Goal</button>
+            <section class="new-goal">
+                <div>
+                    <label for="name">Name:</label>
+                    <input id="name" name="name" type="text" value="{{goal.name}}" required autofocus>
+                </div>
+                <div>
+                    <label for="savings_target">Savings Target:</label>
+                    <input id="savings_target" name="savings_target" type="number" step=".01" value="{{goal.savings_target}}" required>
+                </div>
+                <div>
+                    <label for="savings_time_frame">To be Saved by: </label>
+                    <input id="savings_time_frame" name="savings_time_frame" type="date" value="{{goal.savings_time_frame}}" required>
+                </div>
+                <div>
+                    <label for="saved_so_far">Funds Saved so Far:</label>
+                    <input id="saved_so_far" name="saved_so_far" type="number" step=".01" value="{{goal.saved_so_far}}" required>
+                </div>
+                <button class = "button" type="submit">Edit Goal</button>
+            </section>
             </form>
-        </section>
+    </section>
 </main>
 
 

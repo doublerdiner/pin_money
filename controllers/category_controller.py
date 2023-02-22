@@ -22,7 +22,10 @@ def create_category():
 def show_category(id):
     category = category_repository.select(id)
     transactions = category_repository.category_transactions(category)
-    return render_template("categories/show.html", title="View Category", transactions=transactions, category=category)
+    total=0
+    for transaction in transactions:
+        total += transaction.cost
+    return render_template("categories/show.html", title="View Category", transactions=transactions, category=category, total=total)
 
 # # EDIT
 # @category_blueprint.route('/categories/edit/<id>')

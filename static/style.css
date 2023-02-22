@@ -1,9 +1,10 @@
 body{
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 20vh 90% 5vh;     
+    grid-template-rows: 20vh 90%;     
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     background: linear-gradient(90deg, rgba(3,13,130,.3) 41%, rgba(175,29,253,.3) 100%);
+    font-size: 1.5vh;
 }
 
 /* BASE */
@@ -74,7 +75,7 @@ h1{
 .welcome{
     height: 100%;
     display: grid;
-    grid-template-columns: 20% 60% 20%;
+    grid-template-columns: 30% 40% 30%;
     grid-template-rows: 100%;    
 }
 
@@ -321,10 +322,65 @@ h1{
     display: flex;
     flex-direction: column;
     align-items: center;
+    border-left: 1px solid black;
+
 
 }
 
 .setting{
     text-align: center;
     padding-top: 2vh;
+}
+
+/* CATEGORIES & VENDORS VIEW */
+
+.cvgrid{
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 20vh 20vh;
+}
+
+/* GOALS */
+
+.goalgrid{
+    display: grid;
+    grid-template-columns: 30vh 30vh 30vh;
+}
+
+.goal{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 0 8vh;
+}
+
+.goal>div{
+    text-align: center;
+}
+
+.goal>div>h3>a{
+    color: black;
+}
+.goal>div>h3>a:hover{
+    color: white;
+}
+.goal>div>h3>a:visited{
+    text-decoration: none;
+}
+
+.goal>div>form{
+    text-align: center;
+    margin: 1vh;
+}
+
+.new-goal{
+    display: flex;
+    flex-direction: column;
+    max-width: 23%;
+}
+
+.new-goal>div{
+    display: flex;
+    justify-content: space-between;
+    margin:0 0 1vh;
 }

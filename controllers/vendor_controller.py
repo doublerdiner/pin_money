@@ -23,7 +23,10 @@ def create_vendor():
 def show_vendor(id):
     vendor = vendor_repository.select(id)
     transactions = vendor_repository.vendor_transactions(vendor)
-    return render_template("vendors/show.html", title="View Vendor", transactions=transactions, vendor=vendor)
+    total=0
+    for transaction in transactions:
+        total += transaction.cost
+    return render_template("vendors/show.html", title="View Vendor", transactions=transactions, vendor=vendor, total=total)
 
 # # EDIT
 # @vendor_blueprint.route('/vendors/edit/<id>')

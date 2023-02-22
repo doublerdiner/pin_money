@@ -9,26 +9,33 @@
            </ul> 
         </nav>
     </header>
-    <h2>All Goals</h2>
-        {%for goal in goals%}
-           <section>
-                <div>
-                    <p>Goal: <a href="/goals/edit/{{goal.id}}">{{goal.name}}</a></p>
-                    <p>Savings Target: £{{goal.savings_target}}</p>
-                    <p>To be Saved by: {{goal.savings_time_frame.strftime("%d/%m/%Y")}}</p>
-                    <p>Funds Saved so Far: £{{goal.saved_so_far}}</p>
-                    <p>Still to be Saved: £{{goal.savings_target - goal.saved_so_far}}</p>
-                </div>
-                <div>
-                    <form action="/goals/edit/{{goal.id}}">
-                        <button>Edit</button>
-                    </form>
-                    <form action="/goals/delete/{{goal.id}}" method="POST">
-                        <button>Delete</button>
-                    </form>
-                </div>
-            </section>
-        {%endfor%}
+    <section class="left">
+        <h2>All Goals</h2>
+        <section class="goalgrid">
+            {%for goal in goals%}
+            <section class="goal">
+                    <div>
+                        <h3><a href="/goals/edit/{{goal.id}}">{{goal.name}}</a></h3>
+                        <p>Savings Target: £{{goal.savings_target}}</p>
+                        <p>To be Saved by: {{goal.savings_time_frame.strftime("%d/%m/%Y")}}</p>
+                        <p>Funds Saved so Far: £{{goal.saved_so_far}}</p>
+                        <p>Still to be Saved: £{{goal.savings_target - goal.saved_so_far}}</p>
+                    </div>
+                    <div>
+                        <form action="/goals/edit/{{goal.id}}">
+                            <button class="button">Edit</button>
+                        </form>
+                        <form action="/goals/delete/{{goal.id}}" method="POST">
+                            <button class="delete">Delete</button>
+                        </form>
+                    </div>
+                </section>
+            {%endfor%}
+        </section>
+        <form action="/goals/new">
+            <button class="button">Add New Goal</button>
+        </form>
+    </section>
 </main>
 
 

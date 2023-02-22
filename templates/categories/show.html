@@ -10,64 +10,79 @@
            </ul> 
         </nav>
     </header>
-    <h2>View Category</h2>
-    <div class="table">
-        <table>
-            <tr>
-                <th>Name</th>
-                <th>Active? </th>
-            </tr>
-            <tr>
-                <td>{{category.name}}</td>
-                <td>{{category.active}}</td>
-            </tr>
-        </table>
-    <h2>Transactions Linked to This Category</h2>
-    <div class="table">
-        <table>
-            <tr>
-                <th>Name</th>
-                <th>Cost </th>
-                <th>Date</th>
-                <th>Category </th>
-                <th>Vendor</th>
-                <th>Monthly Transaction?</th>
-                <th>Notes</th>
-            </tr>
-            {% for transaction in transactions %}
-            <tr>
-                <td><a href="/transactions/{{transaction.id}}">{{transaction.name}}</a></td>
-                <td>{{transaction.cost}}</td>
-                <td>{{transaction.date.strftime("%d/%m/%Y")}}</td>
-                <td>{{transaction.category.name}}</td>
-                <td>{{transaction.vendor.name}}</td>
-                <td>{{transaction.monthly_recurring}}</td>
-                {%if transaction.notes == "None"%} <td></td>
-                {%elif transaction.notes == None%} <td></td>
-                {%else%}
-                    <td>{{transaction.notes}}</td>
-                {%endif%}
-            </tr>
-            {%endfor%}
-        </table>
-        
-    </div>
-    <aside>
-        <h2>Edit Category</h2>
-        <section>
-            <form action="/categories/{{category.id}}" method="POST">
-                <label for="name">Name:</label>
-                <input id="name" name="name" type="text" value="{{category.name}}" required autofocus>
-                <label for="activate">Active Status:</label>
-                <input id="activate" name="activate" type="radio" value="active">
-                <label for="activate"> Active</label>
-                <input id="deactivate" name="activate" type="radio" value="deactivate"required>
-                <label for="deactivate"> Deactive</label>
-                <button type="submit">Submit</button>
-                <p>If you deactivate a Category then you will no longer be able to select it when creating a new Transaction. </p>
-            </form>
+    <section class="left">    
+        <section class="cvgrid">
+            <div>
+                <h2>View Category</h2>
+                <table>
+                    <tr>
+                        <th>Name</th>
+                        <th>Active? </th>
+                    </tr>
+                    <tr>
+                        <td>{{category.name}}</td>
+                        {%if category.active%}<td class="symbol" class="cell">&#10003;</td>
+                        {%else%} <td class="symbol" class="cell">&#215;</td>{%endif%}
+                    </tr>
+                </table>
+            </div>
+            
+            <aside>
+                <h2>Edit Category</h2>
+                <section>
+                    <form action="/categories/{{category.id}}" method="POST">
+                        <label for="name">Name:</label>
+                        <input id="name" name="name" type="text" value="{{category.name}}" required autofocus>
+                        <label for="activate">Active Status:</label>
+                        <input id="activate" name="activate" type="radio" value="active">
+                        <label for="activate"> Active</label>
+                        <input id="deactivate" name="activate" type="radio" value="deactivate"required>
+                        <label for="deactivate"> Deactive</label>
+                        <button class="button" type="submit">Submit</button>
+                        <p><i>If you deactivate a Category then you will no longer be able to select it when creating a new Transaction.</i></p>
+                    </form>
+                </section>
+            </aside>
+            <div>
+                <h2>Transactions Linked to This Category</h2>
+                <table>
+                    <tr>
+                        <th>Description</th>
+                        <th class="cell">Date</th>
+                        <th class="cell">Category </th>
+                        <th class="cell">Vendor</th>
+                        <th class="cell">Pin Money Transaction?</th>
+                        <th class="cell">Price </th>
+                        <th class="cell">Notes</th>
+                    </tr>
+                    {% for transaction in transactions %}
+                    <tr>
+                        <td><a href="/transactions/{{transaction.id}}">{{transaction.name}}</a></td>
+                        <td class="cell">{{transaction.date.strftime("%d/%m/%Y")}}</td>
+                        <td class="cell">{{transaction.category.name}}</td>
+                        <td class="cell">{{transaction.vendor.name}}</td>
+                        {%if transaction.monthly_recurring == False%}<td class="symbol" class="cell">&#10003;</td>
+                        {%else%} <td class="symbol" class="cell">&#215;</td>{%endif%}
+                        <td class="cell">{{transaction.cost}}</td>
+                        {%if transaction.notes == "None"%} <td></td>
+                        {%elif transaction.notes == None%} <td></td>
+                        {%else%}
+                            <td class="cell">{{transaction.notes}}</td>
+                        {%endif%}
+                    </tr>
+                    {%endfor%}
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <th>Total:</th>
+                        <td><b>£{{total}}</b></td>
+                    </tr>
+                </table>
+            </div>
         </section>
-    </aside>
+    </section>
 </main>
 
 
