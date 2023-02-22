@@ -50,12 +50,8 @@
                 <h2>Edit This Transaction</h2>
                 <form class = "add-transaction-view" action="/transactions/{{transaction.id}}" method="POST">
                     <div class= "form-transaction-view">
-                        <label for="name">Name:</label>
+                        <label for="name">Description:</label>
                         <input id="name" name="name" type="text" value="{{transaction.name}}" required autofocus>
-                    </div>
-                    <div class= "form-transaction-view">
-                        <label for="cost">Cost: £</label>
-                        <input id="cost" name="cost" type="number" step=".01" value="{{transaction.cost}}" required>
                     </div>
                     <div class= "form-transaction-view">
                         <label for="date">Date:</label>
@@ -66,7 +62,7 @@
                         <select name="category_id" id="category">
                             <option value="{{transaction.category.id}}">{{transaction.category.name}}</option>
                             {%for row in categories%}
-                                <option value="{{row.id}}">{{row.name}}</option>
+                            <option value="{{row.id}}">{{row.name}}</option>
                             {%endfor%}
                         </select>
                     </div>
@@ -75,12 +71,12 @@
                         <select name="vendor_id" id="vendor">
                             <option value="{{transaction.vendor.id}}">{{transaction.vendor.name}}</option>
                             {%for row in vendors%}
-                                <option value="{{row.id}}">{{row.name}}</option>
+                            <option value="{{row.id}}">{{row.name}}</option>
                             {%endfor%}
                         </select>
                     </div>
                     <div class= "form-transaction-view">
-                        <label for="monthly_recurring">Monthly Recurring Transaction?</label>
+                        <label for="monthly_recurring">Pin Money Transaction?</label>
                         <select id="monthly_recurring" name="monthly_recurring">
                             {%if transaction.monthly_recurring%}
                             <option value="false">No</option>
@@ -92,12 +88,16 @@
                         </select>
                     </div>
                     <div class= "form-transaction-view">
+                        <label for="cost">Cost: £</label>
+                        <input id="cost" name="cost" type="number" step=".01" value="{{transaction.cost}}" required>
+                    </div>
+                    <div class= "form-transaction-view">
                         <label for="notes">Notes:</label>
-                            {%if transaction.notes == "None"%} <td><input id="notes" name="notes" type="textbox"></td>
-                            {%elif transaction.notes == None%} <td><input id="notes" name="notes" type="textbox"></td>
-                            {%else%}
-                                <td><input id="notes" name="notes" type="textbox" value="{{transaction.notes}}"></td>
-                            {%endif%}
+                        {%if transaction.notes == "None"%} <td><input id="notes" name="notes" type="textbox"></td>
+                        {%elif transaction.notes == None%} <td><input id="notes" name="notes" type="textbox"></td>
+                        {%else%}
+                        <td><input id="notes" name="notes" type="textbox" value="{{transaction.notes}}"></td>
+                        {%endif%}
                     </div>
                     <button class="button" type="submit">Submit</button>
                 </form>

@@ -281,11 +281,6 @@ h1{
 
 /* VIEW TRANSACTION */
 
-.show{
-    display:grid;
-    grid-template-columns: 50% 50%;
-}
-
 .left{
     padding:3vh 0 0 7vh;
 }
@@ -301,4 +296,35 @@ h1{
     justify-content: space-between;
     margin: 1vh;
 
+}
+
+.table{
+    margin: 0vh 0vh 4vh;
+}
+
+/* SETTINGS */
+
+.flex{
+    display: flex;
+}
+.flex>p{
+    padding-right: 1rem;
+}
+
+.grid-settings{
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    grid-template-rows: 100%;
+} 
+
+.grid-settings>div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.setting{
+    text-align: center;
+    padding-top: 2vh;
 }

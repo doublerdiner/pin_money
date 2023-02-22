@@ -10,66 +10,85 @@
            </ul> 
         </nav>
     </header>
-    <h2>Settings</h2>
-    <h3>Account</h3>
-        <p>Take Home Pay:</p>
-        <p>{{account.take_home_pay}}</p>
-        <form action="/settings" method="POST">
-            <label for="take_home_pay">Update Your Monthly Take Home Pay: £</label>
-            <input id="take_home_pay" name="take_home_pay" type="number" step=".01" required>
-            <button type="submit">Update</button>
-        </form>
-
-    <h3>Categories</h3>
-        <div class="table">
-            <table>
-                <tr>
-                    <th>Name</th>
-                    <th>Active? </th>
-                    <th>Edit</th>
-                </tr>
-                {% for category in categories %}
-                <tr>
-                    <td><a href="/categories/{{category.id}}">{{category.name}}</a></td>
-                    <td>{{category.active}}</td>
-                    <td>
-                        <form action="/categories/{{category.id}}">
-                            <button type="submit">Edit</button>
-                        </form>
-                    </td>
-                </tr>
-                {%endfor%}
-            </table>      
-            <form action="/categories/new">
-                <button type="submit">Add New Category</button>
-            </form>     
+    <section class="left">
+        <h2>Settings</h2>
+    <section class="grid-settings">
+        <div> 
+            <h3>Account</h3>
+            <div class="flex">
+                <p>Take Home Pay: </p>
+                <p>£{{account.take_home_pay}}</p>
+            </div>
+            <div class="setting">
+                <form action="/settings" method="POST">
+                    <label for="take_home_pay">Update Your Monthly Take Home Pay</label>
+                    <input id="take_home_pay" name="take_home_pay" type="number" step=".01" placeholder="£1,750"required>
+                    <button class = "button" type="submit">Update</button>
+                </form>
+            </div>
         </div>
 
-        <h3>Vendors</h3>
-        <div class="table">
-            <table>
-                <tr>
-                    <th>Name</th>
-                    <th>Active? </th>
-                    <th>Edit</th>
-                </tr>
-                {% for vendor in vendors %}
-                <tr>
-                    <td><a href="/vendors/{{vendor.id}}">{{vendor.name}}</a></td>
-                    <td>{{vendor.active}}</td>
-                    <td>
-                        <form action="/vendors/{{vendor.id}}">
-                            <button type="submit">Edit</button>
-                        </form>
-                    </td>
-                </tr>
-                {%endfor%}
-            </table>           
-            <form action="/vendors/new">
-                <button type="submit">Add New Vendor</button>
-            </form>  
+        <div>
+            <h3>Categories</h3>
+                <div class="table">
+                    <table>
+                        <tr>
+                            <th class="cell">Name</th>
+                            <th class="cell">Active? </th>
+                            <th class="cell">Edit</th>
+                        </tr>
+                        {% for category in categories %}
+                        <tr>
+                            <td class="cell"><a href="/categories/{{category.id}}">{{category.name}}</a></td>
+                            {%if category.active%}<td class="symbol" class="cell">&#10003;</td>
+                            {%else%}<td class="symbol" class="cell">&#215;</td>{%endif%}
+                            <td class="cell">
+                                <form action="/categories/{{category.id}}">
+                                    <button class="button" type="submit">Edit</button>
+                                </form>
+                            </td>
+                        </tr>
+                        {%endfor%}
+                    </table> 
+                    <div class="setting">     
+                        <form action="/categories/new">
+                            <button class="button" type="submit">Add New Category</button>
+                        </form>     
+                    </div>
+                </div>
         </div>
+        <div>
 
+            <h3>Vendors</h3>
+            <div class="table">
+                <table>
+                    <tr>
+                        <th class="cell">Name</th>
+                        <th class="cell">Active? </th>
+                        <th class="cell">Edit</th>
+                    </tr>
+                    {% for vendor in vendors %}
+                    <tr>
+                        <td class="cell"><a href="/vendors/{{vendor.id}}">{{vendor.name}}</a></td>
+                        {%if vendor.active%}<td class="symbol" class="cell">&#10003;</td>
+                        {%else%}<td class="symbol" class="cell">&#215;</td>{%endif%}
+                        <td class="cell">
+                            <form action="/vendors/{{vendor.id}}">
+                                <button class="button" type="submit">Edit</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {%endfor%}
+                </table> 
+                <div class="setting">              
+                    <form action="/vendors/new">
+                        <button class="button" type="submit">Add New Vendor</button>
+                    </form>  
+                </div>
+            </div>
+        </div>
+    </section>
+    </section>
 
 
 
