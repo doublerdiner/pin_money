@@ -15,7 +15,10 @@ def transactions():
     year = today.strftime("%Y")
     # transactions
     transactions = transaction_repository.select_all()
-    return render_template("transactions/index.html", title="All Transactions", month=month, year=year, transactions = transactions)
+    total=0
+    for transaction in transactions:
+        total += transaction.cost
+    return render_template("transactions/index.html", title="All Transactions", month=month, year=year, transactions = transactions, total=total)
 
 @transaction_blueprint.route('/transactions/cost')
 def transactions_cost():
@@ -25,9 +28,12 @@ def transactions_cost():
     year = today.strftime("%Y")
     # transactions
     transactions = transaction_repository.select_all_cost()
-    return render_template("transactions/index_cost.html", title="All Transactions", month=month, year=year, transactions = transactions)
+    total=0
+    for transaction in transactions:
+        total += transaction.cost
+    return render_template("transactions/index_cost.html", title="All Transactions", month=month, year=year, transactions = transactions, total=total)
 
-@transaction_blueprint.route('/transactions/date')
+@transaction_blueprint.route('/transactions/name')
 def transactions_name():
     # Date
     today = datetime.datetime.now()
@@ -35,7 +41,10 @@ def transactions_name():
     year = today.strftime("%Y")
     # transactions
     transactions = transaction_repository.select_all_name()
-    return render_template("transactions/index_name.html", title="All Transactions", month=month, year=year, transactions = transactions)
+    total=0
+    for transaction in transactions:
+        total += transaction.cost
+    return render_template("transactions/index_name.html", title="All Transactions", month=month, year=year, transactions = transactions, total=total)
 
 # NEW
 # GET '/transactions/new'

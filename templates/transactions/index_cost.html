@@ -4,58 +4,70 @@
     <header>
         <nav>
            <ul class = "sub-menu">
-                <li><a href="/transactions">Back</a></li>
+                <li><a href="/home">Back</a></li>
                 <li><a href="/transactions/new">Add New Transaction</a></li>
            </ul> 
         </nav>
     </header>
-    <h2>All Transactions</h2>
-        <div class="table">
-            <table>
-                <tr>
-                    <th><a href="/transactions/date">Name</a></th>
-                    <th><a href="/transactions/cost">Cost</a></th>
-                    <th><a href="/transactions">Date</a></th>
-                    <th>Category </th>
-                    <th>Vendor</th>
-                    <th>Monthly Transaction?</th>
-                    <th>Notes</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
+    <section class="main-content">
+        <h2>All Transactions</h2>
+            <div class="table">
+                <table>
+                    <tr>
+                        <th class="cell"><a href="/transactions/name">Description</a></th>
+                        <th class="cell"><a href="/transactions">Date</a></th>
+                        <th class="cell">Category </th>
+                        <th class="cell">Vendor</th>
+                        <th class="cell">Pin Money Transaction?</th>
+                        <th class="cell">Notes</th>
+                        <th class="cell"><a href="/transactions/cost">Price</a></th>
+                        <th class="cell">Edit</th>
+                        <th class="cell">Delete</th>
 
-                </tr>
-                {% for transaction in transactions %}
-                <tr>
-                    <td><a href="/transactions/{{transaction.id}}">{{transaction.name}}</a></td>
-                    <td>£{{transaction.cost}}</td>
-                    <td>{{transaction.date.strftime("%d/%m/%Y")}}</td>
-                    <td>{{transaction.category.name}}</td>
-                    <td>{{transaction.vendor.name}}</td>
-                    <td>{{transaction.monthly_recurring}}</td>
-                    {%if transaction.notes == "None"%} <td></td>
-                    {%elif transaction.notes == None%} <td></td>
-                    {%else%}
+                    </tr>
+                    {% for transaction in transactions %}
+                    <tr>
+                        <td class="cell"><a href="/transactions/{{transaction.id}}">{{transaction.name}}</a></td>
+                        <td class="cell">{{transaction.date.strftime("%d/%m/%Y")}}</td>
+                        <td class="cell">{{transaction.category.name}}</td>
+                        <td class="cell">{{transaction.vendor.name}}</td>
+                        {%if transaction.monthly_recurring == False%}<td class="symbol" class="cell">&#10003;</td>
+                        {%else%} <td class="symbol" class="cell">&#215;</td>{%endif%}
+                        {%if transaction.notes == "None"%} <td></td>
+                        {%elif transaction.notes == None%} <td></td>
+                        {%else%}
                         <td>{{transaction.notes}}</td>
-                    {%endif%}
-                    <td> 
-                        <form action="/transactions/edit/{{transaction.id}}">
-                            <button class="edit" type="submit">Edit</button>
-                        </form>
-                    </td>
-                    <td>
-                        <form action="/transactions/delete/{{transaction.id}}" method="POST">
-                            <button class="delete" type="submit">Delete</button>
-                        </form>
-                    </td>
-                </tr>
-                {%endfor%}
-            </table>
-        </div>
-        <div>
-            <form action="/transactions/new">
-                <button type="submit">Add a New Transaction</button>
-            </form>
-        </div>
+                        {%endif%}
+                        <td class="cell">£{{transaction.cost}}</td>
+                        <td class="cell"> 
+                            <form action="/transactions/{{transaction.id}}">
+                                <button class="button" type="submit">Edit</button>
+                            </form>
+                        </td>
+                        <td class="cell">
+                            <form action="/transactions/delete/{{transaction.id}}" method="POST">
+                                <button class="delete" type="submit">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {%endfor%}
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <th class="cell">Total:</th>
+                        <td class="cell"><b>£{{total}}</b></td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <form action="/transactions/new">
+                    <button class="button" type="submit">Add a New Transaction</button>
+                </form>
+            </div>
+    </section>
 </main>
 
 

@@ -1,17 +1,38 @@
-{%extends "base.html"%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <title>Pin Money - {{title}}</title>
+</head>
+<body>
+  <header id="header">
+    <div>
+      <h1 class="logo">PIN MONEY</h1>
+    </div>
+  </header>
 
-{%block content%}
-<section class="welcome">
-<h2>Welcome to Pin Money</h2>
-
-    <section>  
-        <p>Pin Money has been designed to help users gain a better understanding of how their monthly income is spent by splitting transactions into larger recurring transactions and smaller 'Pin Money' transactions.</p>
-        <p>Users can set savings goals, add and edit transactions, vendors and categories and set their monthly income level too.</p>
-        <p>Pin Money provides an up to date overview of this information from the Homepage and includes spending statistics for the current month.</p>
-
+  <div class="container">
+    <section class="welcome">
+        <aside></aside>
+        <section>
+            <h2>Welcome to Pin Money</h2>
+            <p>Pin Money has been designed to help users gain a better understanding of how their monthly income is spent by splitting transactions into larger recurring transactions and smaller 'Pin Money' transactions.</p>
+            <p>Users can set savings goals, add and edit transactions, vendors and categories and set their monthly income level too.</p>
+            <p>Pin Money provides an up to date overview of this information from the Homepage and includes spending statistics for the current month.</p>
+            <form action="/home">
+                <button class="button" type="submit">Enter</button>
+            </form>
+        </section>
+        <aside></aside>
     </section>
-
-
-
-</section>
-{%endblock%}
+  </div>
+  <footer id="footer">
+    Pin Money 2023
+  </footer>
+</body>
+</html>

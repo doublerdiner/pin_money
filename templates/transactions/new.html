@@ -9,47 +9,66 @@
            </ul> 
         </nav>
     </header>
-    <h2>Add New Transaction</h2>
-        <section>
-            <form action="/transactions" method="POST">
-                <label for="name">Name:</label>
-                <input id="name" name="name" type="text" placeholder="Cinema" required autofocus>
-                <label for="cost">Cost: £</label>
-                <input id="cost" name="cost" type="number" step=".01" placeholder="18.50" required>
-                <label for="date">Date:</label>
-                <input id="date" name="date" type="date" value={{today}} required>
-                <label for="category">Category:</label>
-                <select name="category_id" id="category">
-                    {%for row in categories%}
+    <section class="grid">
+        <section class="main-content">
+        <h2>Add New Transaction</h2>
+            <form class="add-form" action="/transactions" method="POST">
+                <div class="form-justify">
+                    <label for="name">Name:</label>
+                    <input id="name" name="name" type="text" placeholder="Cinema" required autofocus>
+                </div>
+                <div class="form-justify">
+                    <label for="date">Date:</label>
+                    <input id="date" name="date" type="date" value={{today}} required>
+                </div>
+                <div class="form-justify">
+                    <label for="category">Category:</label>
+                    <select name="category_id" id="category">
+                        {%for row in categories%}
                         <option value="{{row.id}}">{{row.name}}</option>
-                    {%endfor%}
-                </select>
-                <label for="vendor">Vendor:</label>
-                <select name="vendor_id" id="vendor">
-                    {%for row in vendors%}
+                        {%endfor%}
+                    </select>
+                </div>
+                <div class="form-justify">
+                    <label for="vendor">Vendor:</label>
+                    <select name="vendor_id" id="vendor">
+                        {%for row in vendors%}
                         <option value="{{row.id}}">{{row.name}}</option>
-                    {%endfor%}
-                </select>
-                <label for="monthly_recurring">Monthly Recurring Transaction?</label>
-                <select id="monthly_recurring" name="monthly_recurring">
-                    <option value="false" selected>No</option>
-                    <option value="true">Yes</option>
-                </select>
-                <label for="notes">Notes:</label>
-                <input id="notes" name="notes" type="textbox" placeholder="Notes">
-                <button type="submit">Add Transaction</button>
+                        {%endfor%}
+                    </select>
+                </div>
+                <div class="form-justify">
+                    <label for="monthly_recurring">Pin Money Transaction?</label>
+                    <select id="monthly_recurring" name="monthly_recurring">
+                        <option value="false" selected>Yes</option>
+                        <option value="true">No</option>
+                    </select>
+                </div>
+                <div class="form-justify">
+                    <label for="cost">Cost: </label>
+                    <input id="cost" name="cost" type="number" step=".01" placeholder="£18.50" required>
+                </div>
+                <div class="form-justify">            
+                    <label for="notes">Notes:</label>
+                    <input id="notes" name="notes" type="textbox" placeholder="Notes">
+                </div>
+                <button class="button" type="submit">Add Transaction</button>
             </form>
         </section>
-        <section>
-            <p>Is a Category or Vendor not available for your new transaction?</p>
-            <p>New Categories and Vendors can be added from the Pin Money Settings.</p>
-            <p>The Settings also show any Categories and Vendors that have been deactivated in the past.</p>
-        </section>
-        <div>
-            <form action="/settings" target="_blank">
-                <button type="submit">Settings</button>
-            </form>   
-        </div>
+        <aside>
+            <section>
+                <p>Is a Category or Vendor not available for your new transaction?</p>
+                <p>New Categories and Vendors can be added from the Pin Money Settings.</p>
+                <p>The Settings also show any Categories and Vendors that have been deactivated in the past.</p>
+            </section>
+            <div>
+                <form action="/settings" target="_blank">
+                    <button class="button"type="submit">Settings</button>
+                </form>   
+            </div>
+        </aside>
+    </section>
+    
 
 </main>
 

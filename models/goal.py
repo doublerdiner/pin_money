@@ -24,11 +24,11 @@ class Goal:
     
     def goal_comment(self):
         if self.time_left[2] > 0:
-            return f"You have {self.time_left[2]} years to meet your goal"
+            return f"You have {self.time_left[2]} years to meet your goal!"
         elif self.time_left[1] > 0:
-            return f"You have {self.time_left[1]} months to meet your goal"
+            return f"You have {self.time_left[1]} months to meet your goal!"
         elif self.time_left[0] > 0:
-            return f"You have {self.time_left[0]} days to meet your goal"
+            return f"You have {self.time_left[0]} days to meet your goal!"
         else:
             return f"Your goal due date has passed. Please update your goal"
         

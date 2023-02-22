@@ -34,8 +34,9 @@ def home():
     available_money = take_home_pay - grand_total
     to_be_saved = goal.savings_target - goal.saved_so_far 
     goal.time_remaining()
-    time = goal.goal_comment()   
-    return render_template("index.html", title="Home", month=month, year=year, take_home_pay=take_home_pay, pin_money=pin_money, monthly_recurring=monthly_recurring, pin_money_total=pin_money_total, monthly_recurring_total=monthly_recurring_total, goal=goal, grand_total=grand_total, available_money=available_money, to_be_saved=to_be_saved, time=time)
+    time = goal.goal_comment() 
+    goal_calculation = goal.goal_calculation()  
+    return render_template("index.html", title="Home", month=month, year=year, take_home_pay=take_home_pay, pin_money=pin_money, monthly_recurring=monthly_recurring, pin_money_total=pin_money_total, monthly_recurring_total=monthly_recurring_total, goal=goal, grand_total=grand_total, available_money=available_money, to_be_saved=to_be_saved, time=time, goal_calculation=goal_calculation)
 
 @home_blueprint.route("/home/<id>", methods=['POST'])
 def update_goal_home(id):

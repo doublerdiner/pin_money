@@ -1,10 +1,12 @@
 body{
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 20vh 75vh 5vh;
-     
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+    grid-template-rows: 20vh 90% 5vh;     
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background: linear-gradient(90deg, rgba(3,13,130,.3) 41%, rgba(175,29,253,.3) 100%);
 }
+
+/* BASE */
 
 #header{
     bottom: 20vh;
@@ -18,9 +20,10 @@ body{
 
 h1{
     padding-left: 7vh;
-    padding-top: 3vh;
-    padding-bottom: 3vh;
+    padding-top: 4vh;
+    padding-bottom: 1vh;
     font-size: 4vh;
+    letter-spacing: .5rem;
 }
 
 .menu>ul{
@@ -36,12 +39,16 @@ h1{
 .menu>ul>li>a{
     text-decoration: none;
     color: white;
-    font-size: 1.5vh;
+    font-size: 2vh;
     font-weight: bold;
 }
 .menu>ul>li>a:hover{
     text-decoration: underline;
     color: white;
+}
+
+.menu>ul>li>a:visited{
+    text-decoration: none;
 }
 
 #footer{
@@ -57,3 +64,241 @@ h1{
     color: white;
 }
 
+.container{
+    line-height: 125%;
+    letter-spacing: .05rem;
+}
+
+/* WELCOME */
+
+.welcome{
+    height: 100%;
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
+    grid-template-rows: 100%;    
+}
+
+.welcome>section>h2{
+    text-align: center;
+    padding-top: 10vh;
+}
+
+.welcome>section>form{
+    display: flex;
+    justify-content: center;
+}
+
+.button{
+    border-radius: 5px;
+    padding: 5px 15px;
+    background-color: rgb(3, 14, 130, .9);
+    color: white;
+}
+
+.button:hover{
+    background-color: rgb(3, 14, 130, .7);
+    cursor: pointer;
+}
+
+/* HOME */
+
+.header{
+    background: linear-gradient(90deg, rgba(3,13,130,1) 41%, rgba(175,29,253,1) 100%);
+    padding: 1vh 5vh;
+
+}
+
+.header>h3{
+    margin: 0;
+    color: white;
+}
+
+.top{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    padding: 3vh 3vh;
+}
+
+.home{
+    display: grid;
+    grid-template-columns: 75% 25%;
+    grid-template-rows: 100%; 
+}
+
+.home>aside{
+    padding-left: 3rem;
+    padding-right: 3rem;
+    border-left: 1px black solid;
+    margin-top: 4vh;
+}
+
+.home>aside>div>h2{
+    text-align: center;
+}
+
+.aside-table{
+    padding-bottom: 1rem;
+}
+
+.right{
+    text-align: right;
+}
+
+.aside-buttons>form{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding-top: 1rem;
+}
+
+
+.aside-buttons>form>input{
+    margin:.5rem 0rem;
+}
+
+.take-home-pay{
+    display: flex;
+    flex-direction: column;
+}
+
+.take-home-pay>p{
+    margin:0.2rem
+
+}
+
+.stats{
+    display: flex;
+    flex-direction: column;
+}
+
+.red-text{
+    color: red;
+}
+
+.pin-money-home{
+    padding-left: 3vh;
+    border-top: 1px solid black;
+}
+
+.cell{
+    padding:.5vh 2vh;
+}
+
+.monthly-recurring-home{
+    padding-left: 3vh;
+}
+
+/* TRANSACTIONS */
+
+.sub-menu{
+    display: flex;
+    margin: 0;
+    background: linear-gradient(90deg, rgba(3,13,130,1) 41%, rgba(175,29,253,1) 100%);
+    padding: 1vh 5vh;
+    list-style-type: none;
+}
+
+.sub-menu>li{
+    padding-right: 5vh;
+}
+
+.sub-menu>li>a{
+    text-decoration: none;
+    color: white;
+    font-size: 2vh;
+    font-weight: bold;
+    letter-spacing: 0;
+}
+.sub-menu>li>a:hover{
+    text-decoration: underline;
+    color: white;
+}
+
+.sub-menu>li>a:visited{
+    text-decoration: none;
+}
+
+.symbol{
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.cell>a{
+    color: black;
+}
+.cell>a:hover{
+    color: white;
+}
+
+.cell>a:visited{
+    text-decoration: none;
+}
+
+.delete{
+    border-radius: 5px;
+    padding: 5px 15px;
+    background-color: rgba(171, 0, 0, 0.9);
+    color: white;
+}
+
+.delete:hover{
+    background-color: rgba(171, 0, 0, 0.7);
+    cursor: pointer;
+}
+
+/* ADD TRANSACTION */
+
+.main-content{
+    padding: 3vh 0vh 0 7vh;
+}
+
+.add-form{
+    display: flex;
+    flex-direction: column;
+    max-width: 80%;
+}
+
+.form-justify{
+    display: flex;
+    justify-content: space-between;
+    margin: 1vh;
+}
+
+.grid{
+    display: grid;
+    grid-template-columns: 30% 30% 40%;
+    grid-template-rows: 100%;
+} 
+
+.grid>aside{
+    padding-left: 2rem;
+    padding-right: 3rem;
+    border-left: 1px black solid;
+    margin-top: 4vh;
+    text-align: center;
+}
+
+/* VIEW TRANSACTION */
+
+.show{
+    display:grid;
+    grid-template-columns: 50% 50%;
+}
+
+.left{
+    padding:3vh 0 0 7vh;
+}
+
+.add-transaction-view{
+    display: flex;
+    flex-direction: column;
+    max-width: 30%;
+}
+
+.form-transaction-view{
+    display: flex;
+    justify-content: space-between;
+    margin: 1vh;
+
+}

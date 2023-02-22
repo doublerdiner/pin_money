@@ -1,136 +1,156 @@
 {%extends "base.html"%}
 {%block content%}
 
-<header>
-    <h2>{{month}} {{year}}</h2>
+
+<header class="header">
+    <h3>{{month}} {{year}}</h3>
 </header>
 
-<main>
+<main class="home">
     <section>
-        <div>
-            <h4>Take Home Pay = {{take_home_pay}}</h4>
-            <p>Your Take Home Pay can be updated in Settings</p>
+      <div class="top">
+        <div class="take-home-pay">
+            <p><b>Take Home Pay = £{{take_home_pay}}</b></p>
+            <p><i>Your Take Home Pay can be updated in Settings</i></p>
+            {%if 0 < available_money < 100%}
+                <p class="red-text">CAUTION: Less than £100 pin money for the month</p>
+            {%elif available_money <= 0%}
+                <p class="red-text">CAUTION: £0 Pin Money remaining for this month</p>
+            {%endif%}
         </div>
-        <div>
-            <h4>{{month}} Stats</h4>
-            <table>
-                <tr>
-                    <th>Available Pin Money for {{month}}: </th>
-                    {%if available_money > 100%}
-                        <td class="green-text">{{available_money}}</td>
-                    {%else%}
-                        <td class="red-text">{{available_money}}</td>
-                    {%endif%}
-                </tr>
-                <tr>
-                    <th>Pin Money Transactions Total: </th>
-                    <td>{{pin_money_total}}</td>
-                </tr>
-                <tr>
-                    <th>Monthly Transactions Total: </th>
-                    <td>£{{monthly_recurring_total}}</td>
-                </tr>
-            </table>
-                {%if 0 < available_money < 100%}
-                    <p class="red-text">CAUTION: Less than £100 pin money for the month</p>
-                {%elif available_money <= 0%}
-                    <p class="red-text">CAUTION: £0 Pin Money remaining for this month</p>
-                {%endif%}
+        <div class="stats">
+            <div>
+                <table>
+                    <tr>
+                        <td class="right">Available Pin Money for {{month}}: </td>
+                        {%if available_money > 100%}
+                            <td class="green-text">{{available_money}}</td>
+                        {%else%}
+                            <td class="red-text">{{available_money}}</td>
+                        {%endif%}
+                    </tr>
+                    <tr>
+                        <td class="right">Pin Money Transactions Total: </td>
+                        <td>{{pin_money_total}}</td>
+                    </tr>
+                    <tr>
+                        <td class="right">Monthly Transactions Total: </td>
+                        <td>£{{monthly_recurring_total}}</td>
+                    </tr>
+                </table>
+            </div>
         </div>
-        
-        <div>
+      </div>    
+        <div class="pin-money-home">
             <h3>Pin Money Transactions</h3>
             <table>
                 <tr>
-                    <th>Name</th>
-                    <th>Cost</a></th>
-                    <th>Date</a></th>
-                    <th>Category </th>
-                    <th>Vendor</th>
-                    <th>Notes</th>
+                    <th class="cell">Description</th>
+                    <th class="cell">Date</th>
+                    <th class="cell">Category </th>
+                    <th class="cell">Vendor</th>
+                    <th class="cell">Notes</th>
+                    <th class="cell">Price</th>
                 </tr>
                 {% for transaction in pin_money %}
                 <tr>
-                    <td>{{transaction.name}}</a></td>
-                    <td>£{{transaction.cost}}</td>
-                    <td>{{transaction.date.strftime("%d/%m/%Y")}}</td>
-                    <td>{{transaction.category.name}}</td>
-                    <td>{{transaction.vendor.name}}</td>
-                    {%if transaction.notes == "None"%} <td></td>
-                    {%elif transaction.notes == None%} <td></td>
+                    <td class="cell">{{transaction.name}}</a></td>
+                    <td class="cell">{{transaction.date.strftime("%d/%m/%Y")}}</td>
+                    <td class="cell">{{transaction.category.name}}</td>
+                    <td class="cell">{{transaction.vendor.name}}</td>
+                    {%if transaction.notes == "None"%} <td class="cell"></td>
+                    {%elif transaction.notes == None%} <td class="cell"></td>
                     {%else%}
-                        <td>{{transaction.notes}}</td>
+                    <td class="cell">{{transaction.notes}}</td>
                     {%endif%}
+                    <td class="cell">£{{transaction.cost}}</td>
                 </tr>
                 {%endfor%}
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <th class="cell">Total:</th>
+                    <td class="cell"><b>£{{pin_money_total}}</b></td>
+                </tr>
             </table>
-            <p>Pin Money Transactions Total: £{{pin_money_total}}</p>
         </div>
 
-        <div>
+        <div class="monthly-recurring-home">
             <h3>Monthly Recurring Transactions</h3>
             <table>
                 <tr>
-                    <th>Name</th>
-                    <th>Cost</a></th>
-                    <th>Date</a></th>
-                    <th>Category </th>
-                    <th>Vendor</th>
-                    <th>Notes</th>
+                    <th class="cell">Description</th>
+                    <th class="cell">Date</th>
+                    <th class="cell">Category </th>
+                    <th class="cell">Vendor</th>
+                    <th class="cell">Notes</th>
+                    <th class="cell">Price</th>
                 </tr>
                 {% for transaction in monthly_recurring %}
                 <tr>
-                    <td>{{transaction.name}}</a></td>
-                    <td>£{{transaction.cost}}</td>
-                    <td>{{transaction.date.strftime("%d/%m/%Y")}}</td>
-                    <td>{{transaction.category.name}}</td>
-                    <td>{{transaction.vendor.name}}</td>
-                    {%if transaction.notes == "None"%} <td></td>
-                    {%elif transaction.notes == None%} <td></td>
+                    <td class="cell">{{transaction.name}}</a></td>
+                    <td class="cell">{{transaction.date.strftime("%d/%m/%Y")}}</td>
+                    <td class="cell">{{transaction.category.name}}</td>
+                    <td class="cell">{{transaction.vendor.name}}</td>
+                    {%if transaction.notes == "None"%} <td class="cell"></td>
+                    {%elif transaction.notes == None%} <td class="cell"></td>
                     {%else%}
-                        <td>{{transaction.notes}}</td>
+                    <td class="cell">{{transaction.notes}}</td>
                     {%endif%}
+                    <td class="cell">£{{transaction.cost}}</td>
                 </tr>
                 {%endfor%}
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <th class="cell">Total:</th>
+                    <td class="cell"><b>£{{monthly_recurring_total}}</b></td>
+                </tr>
             </table>
-            <p>Monthly Recurring Transactions Total: £{{monthly_recurring_total}}</p>
         </div>
     </section>
 
     <aside>
         <div>
-            <h3>Next Goal</h3>
-            <table>
+            <h2>Next Goal</h2>
+            <table class="aside-table">
                 <tr>
-                    <th>Goal Name:</th>
+                    <th class="right">Goal Name:</th>
                     <td>{{goal.name}}</td>
                 </tr>
                 <tr>
-                    <th>Savings Target:</th>
+                    <th class="right">Savings Target:</th>
                     <td>{{goal.savings_target}}</td>
                 </tr>
                 <tr>
-                    <th>Saved So Far:</th>
+                    <th class="right">Saved So Far:</th>
                     <td>{{goal.saved_so_far}}</td>
                 </tr>
                 <tr>
-                    <th>Still to be Saved:</th>
+                    <th class="right">Still to be Saved:</th>
                     <td>{{to_be_saved}}</td>
                 </tr>
                 <tr>
-                    <th>To be Saved by:</th>
+                    <th class="right">To be Saved by:</th>
                     <td>{{goal.savings_time_frame.strftime("%d/%m/%Y")}}</td>
                 </tr>
             </table>
             <p>{{time}}</p>
-            <form action="/home/{{goal.id}}" method="POST">
-                <label for="saved_so_far">Add Funds to the Savings Target: £</label>
-                <input id="saved_so_far" name="saved_so_far" type="number" step=".01" required>
-                <button type="submit">Add Funds</button>
-            </form>
-            <form action="/goals">
-                <button type="submit">View All Goals</button>
-            </form>
+            <p>You'll need to save <b>£{{goal_calculation}}</b> per month to meet your goal target date. </p>
+            <section class="aside-buttons">
+                <form action="/home/{{goal.id}}" method="POST">
+                    <label for="saved_so_far">Add Funds to the Savings Target</label>
+                    <input id="saved_so_far" name="saved_so_far" type="number" step=".01" placeholder="£50.00" required>
+                    <button class="button" type="submit">Add Funds</button>
+                </form>
+                <form action="/goals">
+                    <button class="button" type="submit">View All Goals</button>
+                </form>            
+            </section>            
         </div>
     </aside>
 </main>
