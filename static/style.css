@@ -327,6 +327,10 @@ h1{
 
 }
 
+#settings-account{
+    border: none;
+}
+
 .setting{
     text-align: center;
     padding-top: 2vh;

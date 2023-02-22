@@ -1,17 +1,17 @@
 from flask import Flask, render_template
-from controllers.category_controller import category_blueprint
-from controllers.goal_controller import goal_blueprint
-from controllers.transaction_controller import transaction_blueprint
-from controllers.vendor_controller import vendor_blueprint
+from controllers.categories_controller import categories_blueprint
+from controllers.goals_controller import goals_blueprint
+from controllers.transactions_controller import transactions_blueprint
+from controllers.vendors_controller import vendors_blueprint
 from controllers.settings_controller import settings_blueprint
 from controllers.home_controller import home_blueprint
 
 app = Flask(__name__)
 
-app.register_blueprint(category_blueprint)
-app.register_blueprint(goal_blueprint)
-app.register_blueprint(transaction_blueprint)
-app.register_blueprint(vendor_blueprint)
+app.register_blueprint(categories_blueprint)
+app.register_blueprint(goals_blueprint)
+app.register_blueprint(transactions_blueprint)
+app.register_blueprint(vendors_blueprint)
 app.register_blueprint(settings_blueprint)
 app.register_blueprint(home_blueprint)
 

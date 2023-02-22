@@ -3,11 +3,11 @@ import datetime
 from repositories import transaction_repository, category_repository, vendor_repository
 from models.transaction import Transaction
 
-transaction_blueprint = Blueprint("transaction", __name__)
+transactions_blueprint = Blueprint("transactions", __name__)
 
 # INDEX
 # GET TRANSACTIONS
-@transaction_blueprint.route('/transactions')
+@transactions_blueprint.route('/transactions')
 def transactions():
     # Date
     today = datetime.datetime.now()
@@ -20,7 +20,7 @@ def transactions():
         total += transaction.cost
     return render_template("transactions/index.html", title="All Transactions", month=month, year=year, transactions = transactions, total=total)
 
-@transaction_blueprint.route('/transactions/cost')
+@transactions_blueprint.route('/transactions/cost')
 def transactions_cost():
     # Date
     today = datetime.datetime.now()
@@ -33,7 +33,7 @@ def transactions_cost():
         total += transaction.cost
     return render_template("transactions/index_cost.html", title="All Transactions", month=month, year=year, transactions = transactions, total=total)
 
-@transaction_blueprint.route('/transactions/name')
+@transactions_blueprint.route('/transactions/name')
 def transactions_name():
     # Date
     today = datetime.datetime.now()
@@ -48,7 +48,7 @@ def transactions_name():
 
 # NEW
 # GET '/transactions/new'
-@transaction_blueprint.route('/transactions/new')
+@transactions_blueprint.route('/transactions/new')
 def new_transaction():
     today = datetime.datetime.now()
     categories = category_repository.select_all()
@@ -63,7 +63,7 @@ def new_transaction():
 
 # CREATE
 # POST '/transactions'
-@transaction_blueprint.route('/transactions', methods=['POST'])
+@transactions_blueprint.route('/transactions', methods=['POST'])
 def create_transaction():
     name = request.form['name']
     cost = request.form['cost']
@@ -81,7 +81,7 @@ def create_transaction():
 
 # SHOW
 # GET '/transactions/<id>'
-@transaction_blueprint.route("/transactions/<id>")
+@transactions_blueprint.route("/transactions/<id>")
 def show_transaction(id):
     transaction = transaction_repository.select(id)
     categories = category_repository.select_all()
@@ -94,18 +94,9 @@ def show_transaction(id):
             vendors.remove(vendor)  
     return render_template("transactions/show.html", title="View Transaction", transaction=transaction, categories=categories, vendors=vendors)
 
-# # EDIT
-# # GET 'transactions/<id>/edit'
-# @transaction_blueprint.route('/transactions/edit/<id>')
-# def edit_transaction(id):
-#     transaction = transaction_repository.select(id)
-#     categories = category_repository.select_all()
-#     vendors = vendor_repository.select_all()
-#     return render_template("transactions/edit.html", title="Edit Transaction", transaction=transaction, categories=categories, vendors=vendors)
-
 # UPDATE
 # PUT '/transactions/<id>'
-@transaction_blueprint.route("/transactions/<id>", methods=['POST'])
+@transactions_blueprint.route("/transactions/<id>", methods=['POST'])
 def update_transaction(id):
     name = request.form['name']
     cost = request.form['cost']
@@ -123,7 +114,7 @@ def update_transaction(id):
 
 # DELETE
 # DELETE '/transactions/<id>'
-@transaction_blueprint.route("/transactions/delete/<id>", methods=['POST'])
+@transactions_blueprint.route("/transactions/delete/<id>", methods=['POST'])
 def delete_transaction(id):
     transaction_repository.delete(id)
     return redirect("/transactions")

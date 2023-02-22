@@ -3,15 +3,15 @@ from repositories import vendor_repository
 from models.vendor import Vendor
 from models.transaction import Transaction
 
-vendor_blueprint = Blueprint("vendor", __name__)
+vendors_blueprint = Blueprint("vendors", __name__)
 
 # NEW
-@vendor_blueprint.route('/vendors/new')
+@vendors_blueprint.route('/vendors/new')
 def new_vendor():
     return render_template('vendors/new.html', title="New Vendor") 
 
 # CREATE
-@vendor_blueprint.route('/vendors', methods=['POST'])
+@vendors_blueprint.route('/vendors', methods=['POST'])
 def create_vendor():
     name = request.form['name']
     vendor = Vendor(name)
@@ -19,7 +19,7 @@ def create_vendor():
     return redirect ("/settings")
 
 # SHOW / EDIT
-@vendor_blueprint.route("/vendors/<id>")
+@vendors_blueprint.route("/vendors/<id>")
 def show_vendor(id):
     vendor = vendor_repository.select(id)
     transactions = vendor_repository.vendor_transactions(vendor)
@@ -28,14 +28,8 @@ def show_vendor(id):
         total += transaction.cost
     return render_template("vendors/show.html", title="View Vendor", transactions=transactions, vendor=vendor, total=total)
 
-# # EDIT
-# @vendor_blueprint.route('/vendors/edit/<id>')
-# def edit_vendor(id):
-#     vendor = vendor_repository.select(id)
-#     return render_template("vendors/edit.html", title="Edit Vendor", vendor=vendor)
-
 # UPDATE
-@vendor_blueprint.route("/vendors/<id>", methods=['POST'])
+@vendors_blueprint.route("/vendors/<id>", methods=['POST'])
 def update_vendor(id):
     name = request.form['name']
     if request.form['activate'] == "deactivate":

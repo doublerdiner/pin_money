@@ -56,3 +56,8 @@ Possible app name: Pin Money
 Colours: Blue and white
 Logo: wallet
 
+
+Things to correct:
+- refactor the code so monthly_recurring parameter is changed to pin_money_transaction. The boolean is incorrect when viewing the app.
+- create a method so that the goal contributions are taken off of the available funds for the month. 
+- create a way to view the next month / previous month from the home screen. 

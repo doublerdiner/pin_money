@@ -39,20 +39,3 @@ class Goal:
             to_be_saved = (self.savings_target - self.saved_so_far) / months
             to_be_saved = round(to_be_saved, 2)
         return to_be_saved
-
-
-
-        
-        
-        
-    # def daily_savings(self):
-        # days = self.savings_time_frame - datetime.datetime.today()
-        # days = str(days)
-        # days = days.split(" ")
-        # answer = days[0]
-        # if answer < 0:
-        #     return "The goal due date has passed."
-        # elif answer == 1:
-        #     return "You have one day to reach your goal due date."
-        
-       
