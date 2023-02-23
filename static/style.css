@@ -4,7 +4,7 @@ body{
     grid-template-rows: 20vh 90%;     
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     background: linear-gradient(90deg, rgba(3,13,130,.3) 41%, rgba(175,29,253,.3) 100%);
-    font-size: 1.65vh;
+    font-size: 1rem;
 }
 
 /* BASE */
@@ -183,6 +183,7 @@ h1{
 
 .red-text{
     color: red;
+    font-weight: bold;
 }
 
 .pin-money-home{
@@ -396,4 +397,9 @@ h1{
     display: flex;
     justify-content: space-between;
     margin:0 0 1vh;
+}
+
+.green-text{
+    color: green;
+    font-weight: bold;
 }

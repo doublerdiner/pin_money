@@ -41,7 +41,7 @@ def select_all_name():
 
 def select_all_cost():
     transactions = []
-    sql = "SELECT * FROM transactions ORDER BY CAST(cost AS DECIMAL(10,2)) ASC"
+    sql = "SELECT * FROM transactions ORDER BY CAST(cost AS DECIMAL(10,2)) DESC"
     results = run_sql(sql)
     for row in results:
         category = category_repository.select(row['category_id'])

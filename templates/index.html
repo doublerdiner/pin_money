@@ -24,14 +24,14 @@
                     <tr>
                         <td class="right">Available Pin Money for {{month}}: </td>
                         {%if available_money > 100%}
-                            <td class="green-text">{{available_money}}</td>
+                            <td class="green-text">£{{available_money}}</td>
                         {%else%}
-                            <td class="red-text">{{available_money}}</td>
+                            <td class="red-text">£{{available_money}}</td>
                         {%endif%}
                     </tr>
                     <tr>
                         <td class="right">Pin Money Transactions Total: </td>
-                        <td>{{pin_money_total}}</td>
+                        <td>£{{pin_money_total}}</td>
                     </tr>
                     <tr>
                         <td class="right">Monthly Transactions Total: </td>
@@ -132,15 +132,15 @@
                 </tr>
                 <tr>
                     <th class="right">Savings Target:</th>
-                    <td>{{goal.savings_target}}</td>
+                    <td>£{{goal.savings_target}}</td>
                 </tr>
                 <tr>
                     <th class="right">Saved So Far:</th>
-                    <td>{{goal.saved_so_far}}</td>
+                    <td>£{{goal.saved_so_far}}</td>
                 </tr>
                 <tr>
                     <th class="right">Still to be Saved:</th>
-                    <td>{{to_be_saved}}</td>
+                    <td>£{{to_be_saved}}</td>
                 </tr>
                 <tr>
                     <th class="right">To be Saved by:</th>
