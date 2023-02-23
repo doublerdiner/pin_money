@@ -1,0 +1,22 @@
+
+
+
+For Goal comment calculation:
+
+goal.time_left = "YYYY-MM-DD" (in the datetime format)
+goal_split = str(goal.time_left).split("-") (converts to string then splits into year, month, day)
+year = goal_split[0]
+month = goal_split[1]
+day = goal_split[2]
+
+if year > 0:
+print("You have {year} years to meet your goal")
+
+elif month > 0:
+print("You have {month} months to meet your goal")
+
+elif day > 0:
+print("You have {day} days to meet your goal")
+
+else:
+print("Your goal due date has passed. Please update your goal")
