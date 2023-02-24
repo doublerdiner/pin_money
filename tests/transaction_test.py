@@ -51,4 +51,5 @@ class TestTransaction(unittest.TestCase):
         answer = self.transaction_1.obtain_month_int()
         self.assertEqual(2, answer)
 
+
 # 20/02/23 Above tests passed. 

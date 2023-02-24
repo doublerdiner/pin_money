@@ -23,13 +23,13 @@ class TestGoal(unittest.TestCase):
 
     def test_time_remaining(self):
         answer = self.goal_1.time_remaining()
-        self.assertEqual([-19, 4, 0], answer)
+        self.assertEqual([-23, 4, 0], answer)
         # Will change from day to day
 
     def test_goal_comment(self):
         self.goal_1.time_remaining()
         answer = self.goal_1.goal_comment()
-        self.assertEqual("You have 4 months to meet your goal", answer)
+        self.assertEqual("You have 4 months to meet your goal!", answer)
         # Will change from day to day
 
     def test_goal_calculation(self):
